@@ -34,6 +34,7 @@
         "spatie/laravel-medialibrary": "^11.15"
     },
     "require-dev": {
+        "backpack/generators": "^4.0",
         "barryvdh/laravel-ide-helper": "^3.6",
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
