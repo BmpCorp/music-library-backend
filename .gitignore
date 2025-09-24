@@ -1,0 +1,7 @@
+.idea
+.logs
+.data
+node_modules
+frontend
+certbot
+.docker/.env
