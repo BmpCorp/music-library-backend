@@ -36,7 +36,7 @@ return [
     'showDeleteButton' => false,
 
     // Should we warn a user before leaving the page with unsaved changes?
-    'warnBeforeLeaving' => false,
+    'warnBeforeLeaving' => true,
 
     // when viewing the update form of an entry in a language that's not translated should Backpack show a notice
     // that allows the user to fill the form from another language?

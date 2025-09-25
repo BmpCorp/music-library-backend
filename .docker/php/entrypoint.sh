@@ -4,4 +4,6 @@ set -e
 crontab /etc/cron.d/crontab
 cron
 
-exec php-fpm
+service supervisor start
+php-fpm
+tail -f /dev/null

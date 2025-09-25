@@ -53,7 +53,6 @@ return [
             'url' => env('APP_URL').'/media',
             'visibility' => 'public',
             'throw' => false,
-            'report' => false,
         ],
 
         's3' => [

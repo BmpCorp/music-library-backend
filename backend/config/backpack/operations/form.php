@@ -30,7 +30,7 @@ return [
     'showCancelButton' => true,
 
     // Should we warn a user before leaving the page with unsaved changes?
-    'warnBeforeLeaving' => false,
+    'warnBeforeLeaving' => true,
 
     // Before saving the entry, how would you like the request to be stripped?
     //  - false - use Backpack's default (ONLY save inputs that have fields)

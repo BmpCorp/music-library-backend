@@ -40,7 +40,7 @@ return [
     // A 1D array of options which will be used for both the displayed option and the value, or
     // A 2D array in which the first array is used to define the value options and the second array the displayed options
     // If a 2D array is used, strings in the right hand array will be automatically run through trans()
-    'pageLengthMenu' => [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'backpack::crud.all']],
+    'pageLengthMenu' => [[10, 25, 50, 100/*, -1*/], [10, 25, 50, 100/*, 'backpack::crud.all'*/]],
 
     // How important is it for the action buttons to be visible?
     // - 0 - most important
@@ -55,7 +55,7 @@ return [
     // What is the minimum actions for the dropdown to be created
     // Example: when minimum to drop is «2»,  any row with less than «2» action buttons
     // will not create a dropdown, but will show the buttons inline
-    'lineButtonsAsDropdownMinimum' => 1,
+    'lineButtonsAsDropdownMinimum' => 2,
 
     // Force «X» actions to be shown inline before the dropdown is created
     // Example: when setting this to «2», the first «2» actions will be shown inline
