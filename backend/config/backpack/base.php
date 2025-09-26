@@ -191,4 +191,7 @@ return [
     */
 
     'token_username' => env('BACKPACK_TOKEN_USERNAME', false),
+
+    'admin_initial_login' => env('ADMIN_INITIAL_LOGIN'),
+    'admin_initial_password' => env('ADMIN_INITIAL_PASSWORD'),
 ];

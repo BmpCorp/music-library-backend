@@ -26,6 +26,6 @@ exec_cmd "php artisan scout:sync-index-settings"
 exec_cmd "php artisan scout:run"
 exec_cmd "php artisan storage:link"
 exec_cmd "chown -R www-data:www-data storage"
-exec_cmd "php artisan db:seed --class=SomeSeeder"
+exec_cmd "php artisan db:seed"
 
 echo "Fresh install complete"
