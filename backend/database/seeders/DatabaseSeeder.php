@@ -17,4 +17,11 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
         ]);
     }
+
+    public function mock(): void
+    {
+        $this->call([
+            CountrySeeder::class,
+        ]);
+    }
 }

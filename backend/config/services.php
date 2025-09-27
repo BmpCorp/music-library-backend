@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'openrouter' => [
+        'key' => env('OPEN_ROUTER_KEY'),
+        'model' => env('OPEN_ROUTER_MODEL', 'deepseek/deepseek-chat-v3.1:free'),
+    ],
 ];
