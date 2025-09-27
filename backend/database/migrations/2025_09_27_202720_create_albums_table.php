@@ -16,11 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->string('title', 512);
-            $table->text('description');
-            $table->text('genres');
-            $table->unsignedBigInteger('artist_id')->nullable(false);
-            $table->unsignedSmallInteger('year');
-            $table->unsignedBigInteger('song_count');
+            $table->text('description')->nullable();
+            $table->text('genres')->nullable();
+            $table->unsignedBigInteger('artist_id');
+            $table->unsignedSmallInteger('year')->nullable();
+            $table->unsignedBigInteger('song_count')->nullable();
             $table->boolean('has_explicit_lyrics')->default(false);
 
             $table->index(['title', 'deleted_at']);

@@ -14,12 +14,12 @@ class CountrySeeder extends Seeder
     public function run(): void
     {
         if (Country::exists()) {
-            info('Countries already exists');
+            info('Countries already exist');
             return;
         }
 
-        $prompt = 'Please generate a list of countries in JSON format.' .
-            'The list should be presented as array of objects with the following fields: isoCode, name.' .
+        $prompt = 'Please generate a list of countries in minified JSON format. ' .
+            'The list should be presented as an array of objects with the following fields: isoCode, name. ' .
             'The values of these fields should be, respectively: ' .
             'two-letter ISO 3166-1 alpha-2 code of the country; name of the country in Russian.';
 
@@ -32,11 +32,11 @@ class CountrySeeder extends Seeder
         }
 
         $now = now()->toDateTimeString();
-        $data = array_map(fn ($country) => [
+        $data = array_map(fn ($entry) => [
             Country::CREATED_AT => $now,
             Country::UPDATED_AT => $now,
-            Country::CODE => $country['isoCode'],
-            Country::NAME => $country['name'],
+            Country::CODE => $entry['isoCode'],
+            Country::NAME => $entry['name'],
         ], $countries);
 
         Country::insert($data);

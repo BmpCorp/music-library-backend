@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('title', 512)->nullable(false);
-            $table->text('description');
-            $table->text('genres');
-            $table->unsignedBigInteger('country_id');
+            $table->string('title', 512);
+            $table->text('description')->nullable();
+            $table->text('genres')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
 
             $table->index(['title', 'deleted_at']);
             $table->index(['country_id', 'deleted_at']);
