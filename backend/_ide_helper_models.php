@@ -11,6 +11,149 @@
  */
 
 
+namespace App\Models{
+/**
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string $title
+ * @property string $description
+ * @property string $genres
+ * @property int $artist_id
+ * @property int $year
+ * @property int $song_count
+ * @property bool $has_explicit_lyrics
+ * @property-read \App\Models\Artist|null $artist
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereArtistId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereGenres($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereHasExplicitLyrics($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereSongCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperAlbum {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string $title
+ * @property string $description
+ * @property string $genres
+ * @property int $country_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Album> $albums
+ * @property-read int|null $albums_count
+ * @property-read \App\Models\Country|null $country
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereFamilyFriendly()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereGenres($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperArtist {}
+}
+
+namespace App\Models\Base{
+/**
+ * Class Album
+ *
+ * @property int $id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property string $title
+ * @property string $description
+ * @property string $genres
+ * @property int $artist_id
+ * @property int $year
+ * @property int $song_count
+ * @property bool $has_explicit_lyrics
+ * @package App\Models\Base
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereArtistId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereGenres($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereHasExplicitLyrics($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereSongCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperAlbum {}
+}
+
+namespace App\Models\Base{
+/**
+ * Class Artist
+ *
+ * @property int $id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property string $title
+ * @property string $description
+ * @property string $genres
+ * @property int $country_id
+ * @package App\Models\Base
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereGenres($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperArtist {}
+}
+
 namespace App\Models\Base{
 /**
  * Class Country
@@ -78,6 +221,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $code
  * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Artist> $artists
+ * @property-read int|null $artists_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country onlyTrashed()

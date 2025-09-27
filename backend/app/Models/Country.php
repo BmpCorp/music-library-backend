@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base\Country as BaseCountry;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin IdeHelperCountry
@@ -25,4 +26,9 @@ class Country extends BaseCountry
 		self::CODE,
 		self::NAME,
 	];
+
+    public function artists(): HasMany
+    {
+        return $this->hasMany(Artist::class);
+    }
 }
