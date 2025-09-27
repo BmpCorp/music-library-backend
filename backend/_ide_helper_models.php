@@ -13,6 +13,35 @@
 
 namespace App\Models\Base{
 /**
+ * Class Country
+ *
+ * @property int $id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property string $code
+ * @property string $name
+ * @package App\Models\Base
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperCountry {}
+}
+
+namespace App\Models\Base{
+/**
  * Class User
  *
  * @property int $id
@@ -39,6 +68,32 @@ namespace App\Models\Base{
  */
 	#[\AllowDynamicProperties]
 	class IdeHelperUser {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string $code
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperCountry {}
 }
 
 namespace App\Models{
