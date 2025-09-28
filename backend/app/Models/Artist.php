@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Base\Artist as BaseArtist;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -39,6 +40,11 @@ class Artist extends BaseArtist
     public function albums(): HasMany
     {
         return $this->hasMany(Album::class);
+    }
+
+    public function favoriteOfUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, UserFavoriteArtist::class);
     }
 
     public function scopeWhereFamilyFriendly(Builder $builder): void

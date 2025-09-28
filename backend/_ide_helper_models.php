@@ -18,11 +18,11 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $title
- * @property string $description
- * @property string $genres
+ * @property string|null $description
+ * @property string|null $genres
  * @property int $artist_id
- * @property int $year
- * @property int $song_count
+ * @property int|null $year
+ * @property int|null $song_count
  * @property bool $has_explicit_lyrics
  * @property-read \App\Models\Artist|null $artist
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
@@ -55,12 +55,14 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $title
- * @property string $description
- * @property string $genres
- * @property int $country_id
+ * @property string|null $description
+ * @property string|null $genres
+ * @property int|null $country_id
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Album> $albums
  * @property-read int|null $albums_count
  * @property-read \App\Models\Country|null $country
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $favoriteOfUsers
+ * @property-read int|null $favorite_of_users_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist onlyTrashed()
@@ -213,6 +215,32 @@ namespace App\Models\Base{
 	class IdeHelperUser {}
 }
 
+namespace App\Models\Base{
+/**
+ * Class UserFavoriteArtist
+ *
+ * @property int $user_id
+ * @property int $artist_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property int|null $last_checked_album
+ * @property bool $listening_now
+ * @package App\Models\Base
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereArtistId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbum($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereListeningNow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUserId($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperUserFavoriteArtist {}
+}
+
 namespace App\Models{
 /**
  * @property int $id
@@ -251,6 +279,8 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Artist> $favoriteArtists
+ * @property-read int|null $favorite_artists_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
@@ -279,6 +309,31 @@ namespace App\Models{
  */
 	#[\AllowDynamicProperties]
 	class IdeHelperUser {}
+}
+
+namespace App\Models{
+/**
+ * @property int $user_id
+ * @property int $artist_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $last_checked_album
+ * @property bool $listening_now
+ * @property-read \App\Models\Artist|null $artist
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereArtistId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbum($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereListeningNow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUserId($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperUserFavoriteArtist {}
 }
 
 namespace Spatie\Permission\Models{

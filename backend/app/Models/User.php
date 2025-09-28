@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Base\User as BaseUser;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -48,5 +49,10 @@ class User extends BaseUser
         return [
             self::PASSWORD => 'hashed',
         ];
+    }
+
+    public function favoriteArtists(): HasManyThrough
+    {
+        return $this->hasManyThrough(Artist::class, UserFavoriteArtist::class);
     }
 }
