@@ -18,3 +18,10 @@
         <x-backpack::menu-dropdown-item title="Страны" icon="la la-globe" :link="backpack_url('country')" />
     </x-backpack::menu-dropdown>
 @endcanany
+@canany([PermissionCode::FULL_ACCESS, PermissionCode::CONTENT])
+    <x-backpack::menu-dropdown title="Контент" icon="la la-music">
+        <x-backpack::menu-dropdown-item title="Исполнители" icon="la la-guitar" :link="backpack_url('artist')" />
+        <x-backpack::menu-dropdown-item title="Альбомы" icon="la la-record-vinyl" :link="backpack_url('album')" />
+    </x-backpack::menu-dropdown>
+@endcanany
+

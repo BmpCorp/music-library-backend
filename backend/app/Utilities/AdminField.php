@@ -22,8 +22,8 @@ final class AdminField
         'class' => 'form-group col-sm-9 mb-3',
     ];
 
-    public const INPUT_MAX_LENGTH_30 = [
-        'maxlength' => 30,
+    public const TEXTAREA_ROWS_3 = [
+        'rows' => 3,
     ];
     public const INPUT_MAX_LENGTH_255 = [
         'maxlength' => 255,
