@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                     UserFavoriteArtist::ARTIST_ID => $artist->id,
                     UserFavoriteArtist::CREATED_AT => $now,
                     UserFavoriteArtist::UPDATED_AT => $now,
-                    UserFavoriteArtist::LAST_CHECKED_ALBUM => $artist->albums->random()->id,
+                    UserFavoriteArtist::LAST_CHECKED_ALBUM_ID => $artist->albums->random()->id,
                     UserFavoriteArtist::LISTENING_NOW => rand(0, 10) < 2,
                 ];
             }

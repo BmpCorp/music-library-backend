@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $artist_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property int|null $last_checked_album
+ * @property int|null $last_checked_album_id
  * @property bool $listening_now
  * @package App\Models\Base
  * @mixin IdeHelperUserFavoriteArtist
@@ -27,7 +27,7 @@ class UserFavoriteArtist extends Model
     const ARTIST_ID = 'artist_id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-    const LAST_CHECKED_ALBUM = 'last_checked_album';
+    const LAST_CHECKED_ALBUM_ID = 'last_checked_album_id';
     const LISTENING_NOW = 'listening_now';
     protected $table = 'user_favorite_artists';
     public $incrementing = false;
@@ -37,7 +37,7 @@ class UserFavoriteArtist extends Model
         self::ARTIST_ID => 'int',
         self::CREATED_AT => 'datetime',
         self::UPDATED_AT => 'datetime',
-        self::LAST_CHECKED_ALBUM => 'int',
+        self::LAST_CHECKED_ALBUM_ID => 'int',
         self::LISTENING_NOW => 'bool'
     ];
 }

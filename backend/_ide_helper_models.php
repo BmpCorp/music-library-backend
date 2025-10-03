@@ -25,6 +25,9 @@ namespace App\Models{
  * @property int|null $song_count
  * @property bool $has_explicit_lyrics
  * @property-read \App\Models\Artist|null $artist
+ * @property mixed $cover
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album onlyTrashed()
@@ -63,6 +66,9 @@ namespace App\Models{
  * @property-read \App\Models\Country|null $country
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $favoriteOfUsers
  * @property-read int|null $favorite_of_users_count
+ * @property mixed $logo
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist onlyTrashed()
@@ -228,7 +234,7 @@ namespace App\Models\Base{
  * @property int $artist_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property int|null $last_checked_album
+ * @property int|null $last_checked_album_id
  * @property bool $listening_now
  * @package App\Models\Base
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newModelQuery()
@@ -236,7 +242,7 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereArtistId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbum($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbumId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereListeningNow($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUserId($value)
@@ -360,7 +366,7 @@ namespace App\Models{
  * @property int $artist_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int|null $last_checked_album
+ * @property int|null $last_checked_album_id
  * @property bool $listening_now
  * @property-read \App\Models\Artist|null $artist
  * @property-read \App\Models\User|null $user
@@ -369,7 +375,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereArtistId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbum($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbumId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereListeningNow($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUserId($value)
