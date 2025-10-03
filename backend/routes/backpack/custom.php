@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserCrudController;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -16,6 +17,7 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
+    Route::crud('user', UserCrudController::class);
 }); // this should be the absolute last line of this file
 
 /**
