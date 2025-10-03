@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class UserFavoriteArtist
  *
+ * @property int $id
  * @property int $user_id
  * @property int $artist_id
  * @property Carbon|null $created_at
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserFavoriteArtist extends Model
 {
+    const ID = 'id';
     const USER_ID = 'user_id';
     const ARTIST_ID = 'artist_id';
     const CREATED_AT = 'created_at';
@@ -30,9 +32,9 @@ class UserFavoriteArtist extends Model
     const LAST_CHECKED_ALBUM_ID = 'last_checked_album_id';
     const LISTENING_NOW = 'listening_now';
     protected $table = 'user_favorite_artists';
-    public $incrementing = false;
 
     protected $casts = [
+        self::ID => 'int',
         self::USER_ID => 'int',
         self::ARTIST_ID => 'int',
         self::CREATED_AT => 'datetime',

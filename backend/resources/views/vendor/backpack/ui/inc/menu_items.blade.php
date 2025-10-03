@@ -24,4 +24,8 @@
         <x-backpack::menu-dropdown-item title="Альбомы" icon="la la-record-vinyl" :link="backpack_url('album')" />
     </x-backpack::menu-dropdown>
 @endcanany
-
+@canany([PermissionCode::FULL_ACCESS, PermissionCode::FEEDBACK])
+    <x-backpack::menu-dropdown title="Обратная связь" icon="la la-envelope">
+        <x-backpack::menu-dropdown-item title="Любимые исполнители" icon="la la-headphones" :link="backpack_url('user-favorite-artist')" />
+    </x-backpack::menu-dropdown>
+@endcanany

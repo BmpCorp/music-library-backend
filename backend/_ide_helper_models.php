@@ -230,6 +230,7 @@ namespace App\Models\Base{
 /**
  * Class UserFavoriteArtist
  *
+ * @property int $id
  * @property int $user_id
  * @property int $artist_id
  * @property Carbon|null $created_at
@@ -242,6 +243,7 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereArtistId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbumId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereListeningNow($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUpdatedAt($value)
@@ -362,6 +364,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property int $id
  * @property int $user_id
  * @property int $artist_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -369,12 +372,14 @@ namespace App\Models{
  * @property int|null $last_checked_album_id
  * @property bool $listening_now
  * @property-read \App\Models\Artist|null $artist
+ * @property-read \App\Models\Album|null $lastCheckedAlbum
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereArtistId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereLastCheckedAlbumId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereListeningNow($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist whereUpdatedAt($value)

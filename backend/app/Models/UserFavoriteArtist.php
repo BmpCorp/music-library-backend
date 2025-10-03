@@ -37,4 +37,9 @@ class UserFavoriteArtist extends BaseUserArtistFavorite
     {
         return $this->belongsTo(Artist::class);
     }
+
+    public function lastCheckedAlbum(): BelongsTo
+    {
+        return $this->belongsTo(Album::class);
+    }
 }
