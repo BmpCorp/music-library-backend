@@ -202,7 +202,7 @@ class UserCrudController extends CrudController
                 'password_confirm' => 'nullable|same:' . User::PLAIN_PASSWORD,
             ];
         }
-        
+
         $this->crud->setValidation($rules, [
             User::NAME . '.required' => 'Не заполнено имя.',
             User::NAME . '.max' => 'Слишком длинный текст в поле имени (не более :max символов).',

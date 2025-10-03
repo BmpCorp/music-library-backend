@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Admin\RoleCrudController;
 use App\Http\Controllers\Admin\UserCrudController;
-use App\Models\Permission;
+use Backpack\PermissionManager\app\Http\Controllers\RoleCrudController as PermissionManagerRoleCrudController;
 use Backpack\PermissionManager\app\Http\Controllers\UserCrudController as PermissionManagerUserCrudController;
-use Backpack\PermissionManager\app\Models\Permission as PermissionManagerPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
 
         // Permission manager customizations
         $this->app->bind(PermissionManagerUserCrudController::class, UserCrudController::class);
+        $this->app->bind(PermissionManagerRoleCrudController::class, RoleCrudController::class);
     }
 }
