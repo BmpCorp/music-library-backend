@@ -67,6 +67,12 @@ class ArtistCrudController extends CrudController
         ]);
 
         $this->crud->column([
+            'name' => Artist::LOGO,
+            'type' => 'image',
+            'label' => 'Логотип',
+        ]);
+
+        $this->crud->column([
             'name' => Artist::GENRES,
             'type' => 'text',
             'label' => 'Жанры',
@@ -146,6 +152,13 @@ class ArtistCrudController extends CrudController
             'name' => Artist::GENRES,
             'type' => 'text',
             'label' => 'Жанры',
+        ]);
+
+        $this->crud->addField([
+            'name' => Artist::LOGO,
+            'type' => 'upload',
+            'label' => 'Логотип',
+            'upload' => true,
         ]);
     }
 

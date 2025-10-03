@@ -64,6 +64,9 @@ class AlbumCrudController extends CrudController
             'name' => 'artist.' . Artist::TITLE,
             'type' => 'text',
             'label' => 'Исполнитель',
+            'searchLogic' => function (Builder $query, $column, $searchTerm) {
+                $query->orWhereRelation('artist', Artist::TITLE, 'LIKE', "%{$searchTerm}%");
+            },
         ]);
 
         $this->crud->column([
@@ -74,9 +77,9 @@ class AlbumCrudController extends CrudController
         ]);
 
         $this->crud->column([
-            'name' => Album::SONG_COUNT,
-            'type' => 'number',
-            'label' => 'Кол-во песен',
+            'name' => Album::COVER,
+            'type' => 'image',
+            'label' => 'Обложка',
         ]);
 
         $this->crud->column([
@@ -137,7 +140,7 @@ class AlbumCrudController extends CrudController
             'entity' => 'artist',
             'model' => Artist::class,
             'attribute' => Artist::TITLE,
-            'options' => fn(Builder $query) => $query->orderBy(Artist::TITLE)->get(),
+            'options' => fn (Builder $query) => $query->orderBy(Artist::TITLE)->get(),
         ]);
 
         $this->crud->addField([
@@ -179,6 +182,13 @@ class AlbumCrudController extends CrudController
             'name' => Album::GENRES,
             'type' => 'text',
             'label' => 'Жанры',
+        ]);
+
+        $this->crud->addField([
+            'name' => Album::COVER,
+            'type' => 'upload',
+            'label' => 'Обложка',
+            'upload' => true,
         ]);
     }
 
