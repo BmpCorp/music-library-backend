@@ -13,3 +13,8 @@
         @endcanany
     </x-backpack::menu-dropdown>
 @endcanany
+@canany([PermissionCode::FULL_ACCESS, PermissionCode::DICTIONARIES])
+    <x-backpack::menu-dropdown title="Справочники" icon="la la-book">
+        <x-backpack::menu-dropdown-item title="Страны" icon="la la-globe" :link="backpack_url('country')" />
+    </x-backpack::menu-dropdown>
+@endcanany

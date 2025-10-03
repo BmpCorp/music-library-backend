@@ -65,13 +65,13 @@ class RoleCrudController extends CrudController
         $this->crud->query->withCount('users');
         $this->crud->addColumn([
             'label' => 'Пользователей',
-            'type' => 'text',
+            'type' => 'number',
             'name' => 'users_count',
-            'wrapper' => [
+            'wrapper' => backpack_pro() ? [
                 'href' => function ($crud, $column, $entry) {
                     return backpack_url('user?role_id=' . $entry->getKey());
                 },
-            ],
+            ] : [],
         ]);
 
         /**

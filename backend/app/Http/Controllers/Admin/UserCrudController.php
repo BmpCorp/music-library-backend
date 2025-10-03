@@ -209,6 +209,7 @@ class UserCrudController extends CrudController
             User::EMAIL . '.required' => 'Не заполнен Email',
             User::EMAIL . '.email' => 'Введённый Email некорректен.',
             User::EMAIL . '.max' => 'Слишком длинный текст в поле Email (не более :max символов).',
+            User::EMAIL . '.unique' => 'Такой Email уже существует.',
             User::PLAIN_PASSWORD . '.required' => 'Не заполнен пароль.',
             User::PLAIN_PASSWORD . '.min' => 'Слишком короткий пароль (минимум :min символов).',
             'password_confirm.required' => 'Повторите пароль.',

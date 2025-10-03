@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Base\Country as BaseCountry;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Country extends BaseCountry
 {
+    use CrudTrait;
+
     /**
      * @var string[]
      */
