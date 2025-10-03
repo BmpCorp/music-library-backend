@@ -5,10 +5,15 @@ namespace App\Models;
 use App\Enums\PermissionCode;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
+/**
+ * @mixin IdeHelperPermission
+ */
 class Permission extends \Backpack\PermissionManager\app\Models\Permission
 {
+    public const ADMIN_NAME = 'admin_name';
+
     protected $appends = [
-        'admin_name',
+        self::ADMIN_NAME,
     ];
 
     protected function adminName(): Attribute

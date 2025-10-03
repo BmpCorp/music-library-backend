@@ -7,6 +7,7 @@
 namespace App\Models\Base;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class User
@@ -19,11 +20,13 @@ use Carbon\Carbon;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
  * @package App\Models\Base
  * @mixin IdeHelperUser
  */
 class User extends \Illuminate\Foundation\Auth\User
 {
+    use SoftDeletes;
     const ID = 'id';
     const NAME = 'name';
     const EMAIL = 'email';
@@ -32,6 +35,7 @@ class User extends \Illuminate\Foundation\Auth\User
     const REMEMBER_TOKEN = 'remember_token';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+    const DELETED_AT = 'deleted_at';
     protected $table = 'users';
 
     protected $casts = [
