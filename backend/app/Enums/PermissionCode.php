@@ -19,4 +19,17 @@ final class PermissionCode extends Enum implements LocalizedEnum
     const FEEDBACK = 'feedback';
 
     const MAINTENANCE = 'maintenance';
+
+    public static function getNames(): array
+    {
+        return [
+            self::FULL_ACCESS => 'Полный доступ',
+            self::USERS => 'Пользователи',
+            self::ROLES => 'Роли',
+            self::DICTIONARIES => 'Справочники',
+            self::CONTENT => 'Контент',
+            self::FEEDBACK => 'Обратная связь',
+            self::MAINTENANCE => 'Обслуживание',
+        ];
+    }
 }
