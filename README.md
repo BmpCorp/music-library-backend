@@ -1,19 +1,29 @@
-### Deploy using Docker
+## Simple Music Library
 
-- copy `.docker/.env.example` to `.docker/.env` and configure it
-    - every variable is required
-- copy `backend/.env.example` to `backend/.env` and configure it
-    - leave `APP_KEY` empty
-    - these vars should be the same (docker's .env -> backend .env):
-        - `MYSQL_HOST` = `DB_HOST`
-        - `MYSQL_PORT` = `DB_PORT`
-        - `MYSQL_DATABASE` = `DB_DATABASE`
-        - `MYSQL_USER` = `DB_USERNAME`
-        - `MYSQL_USER_PASSWORD` = `DB_PASSWORD`
-        - `REDIS_PASSWORD` = `REDIS_PASSWORD`
-        - `REDIS_PORT` = `REDIS_PORT`
-        - `MEILISEARCH_PASSWORD` = `MEILISEARCH_KEY`
-        - `APP_URL` var should be `scheme:// + domain:port` from docker's .env
-- start docker containers
-    - docker compose example: `cd .docker && docker compose -f docker-compose.dev.yml up -d`
-- run `fresh.sh` on first install
+This repository contains a demo music library application built with the latest versions of PHP and Laravel.
+The project is designed for presentation and portfolio purposes, not for production use.
+
+While the application provides basic functionality for managing and browsing a collection of music,
+its primary focus is to showcase code quality, design patterns, and development approach rather than complex business logic.
+
+### Frameworks and Libraries used
+
+- **Laravel 12** working on PHP 8.3.4 
+- MySQL 8
+- nginx
+- Meilisearch as search engine
+- Redis as caching and queue driver
+- Docker and Docker Compose for deployment
+- **Backpack 6** for admin panels
+- Spatie Laravel Media Library with Backpack support
+- Backpack Permission Manager
+- AI services (Open Router)
+
+### Additional Notes
+
+The use of LLM to provide mock data is for presentation purposes. In real project, it would be more reliable to use
+pre-generated seed data.
+
+For simplicity, this project doesn't use development or feature branches.
+
+See DEPLOYMENT.md for deployment instructions.
