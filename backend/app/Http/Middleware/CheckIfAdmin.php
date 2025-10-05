@@ -27,8 +27,9 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        // return ($user->is_admin == 1);
-        return true;
+        // in this case, we check if user has any permission set explicitly,
+        // or has any role (which implies granted permissions)
+        return $user->permissions()->count() > 0 || $user->roles()->count() > 0;
     }
 
     /**

@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AlbumCrudController;
+use App\Http\Controllers\Admin\ArtistCrudController;
+use App\Http\Controllers\Admin\CountryCrudController;
+use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\UserCrudController;
+use App\Http\Controllers\Admin\UserFavoriteArtistCrudController;
+use App\Http\Middleware\CheckForMaintenanceAccess;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -17,11 +23,20 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
+    Route::group([
+        'prefix' => 'metrics',
+        'middleware' => [CheckForMaintenanceAccess::class],
+    ], function () {
+        Route::get('php', [MaintenanceController::class, 'getPhpInfo']);
+        Route::get('php-fpm', [MaintenanceController::class, 'getPhpFpmStatus']);
+        Route::get('mysql', [MaintenanceController::class, 'getMysqlVars']);
+    });
+
     Route::crud('user', UserCrudController::class);
-    Route::crud('country', 'CountryCrudController');
-    Route::crud('artist', 'ArtistCrudController');
-    Route::crud('album', 'AlbumCrudController');
-    Route::crud('user-favorite-artist', 'UserFavoriteArtistCrudController');
+    Route::crud('country', CountryCrudController::class);
+    Route::crud('artist', ArtistCrudController::class);
+    Route::crud('album', AlbumCrudController::class);
+    Route::crud('user-favorite-artist', UserFavoriteArtistCrudController::class);
 }); // this should be the absolute last line of this file
 
 /**

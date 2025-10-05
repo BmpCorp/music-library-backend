@@ -29,3 +29,10 @@
         <x-backpack::menu-dropdown-item title="Любимые исполнители" icon="la la-headphones" :link="backpack_url('user-favorite-artist')" />
     </x-backpack::menu-dropdown>
 @endcanany
+@canany([PermissionCode::FULL_ACCESS, PermissionCode::MAINTENANCE])
+    <x-backpack::menu-dropdown title="Обслуживание" icon="la la-screwdriver">
+        <x-backpack::menu-dropdown-item title="phpinfo" icon="la la-info-circle" :link="backpack_url('metrics/php')" />
+        <x-backpack::menu-dropdown-item title="php-fpm" icon="la la-server" :link="backpack_url('metrics/php-fpm')" />
+        <x-backpack::menu-dropdown-item title="MySQL" icon="la la-database" :link="backpack_url('metrics/mysql')" />
+    </x-backpack::menu-dropdown>
+@endcanany
