@@ -18,6 +18,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $title
+ * @property string|null $slug
  * @property string|null $description
  * @property string|null $genres
  * @property int $artist_id
@@ -39,6 +40,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereGenres($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereHasExplicitLyrics($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereSongCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereUpdatedAt($value)
@@ -58,6 +60,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $title
+ * @property string|null $slug
  * @property string|null $description
  * @property string|null $genres
  * @property int|null $country_id
@@ -69,6 +72,7 @@ namespace App\Models{
  * @property mixed $logo
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist onlyTrashed()
@@ -80,9 +84,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereFamilyFriendly()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereGenres($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withoutTrashed()
  * @mixin \Eloquent
  */
@@ -99,11 +105,12 @@ namespace App\Models\Base{
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property string $title
- * @property string $description
- * @property string $genres
+ * @property string|null $slug
+ * @property string|null $description
+ * @property string|null $genres
  * @property int $artist_id
- * @property int $year
- * @property int $song_count
+ * @property int|null $year
+ * @property int|null $song_count
  * @property bool $has_explicit_lyrics
  * @package App\Models\Base
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
@@ -117,6 +124,7 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereGenres($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereHasExplicitLyrics($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereSongCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereUpdatedAt($value)
@@ -138,9 +146,10 @@ namespace App\Models\Base{
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property string $title
- * @property string $description
- * @property string $genres
- * @property int $country_id
+ * @property string|null $slug
+ * @property string|null $description
+ * @property string|null $genres
+ * @property int|null $country_id
  * @package App\Models\Base
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
@@ -152,6 +161,7 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereGenres($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist withTrashed(bool $withTrashed = true)

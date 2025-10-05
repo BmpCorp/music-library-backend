@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Attributes\MediaLibraryCollectionAttribute;
+use App\Utilities\SearchableString;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Base\Album as BaseAlbum;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -17,7 +20,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Album extends BaseAlbum implements HasMedia
 {
-    use CrudTrait, InteractsWithMedia;
+    use CrudTrait, InteractsWithMedia, Searchable, Sluggable;
 
     public const COVER = 'cover';
 
@@ -36,6 +39,7 @@ class Album extends BaseAlbum implements HasMedia
      */
 	protected $fillable = [
 		self::TITLE,
+        self::SLUG,
 		self::DESCRIPTION,
 		self::GENRES,
 		self::ARTIST_ID,
@@ -79,5 +83,24 @@ class Album extends BaseAlbum implements HasMedia
             conversion: self::COVER . '_resized',
             single: true,
         );
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            self::SLUG => [
+                'source' => self::TITLE,
+            ],
+        ];
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            ...SearchableString::make('title', $this->title),
+            ...SearchableString::make('genres', $this->genres),
+            ...SearchableString::make('artist', $this->artist->title),
+        ];
     }
 }

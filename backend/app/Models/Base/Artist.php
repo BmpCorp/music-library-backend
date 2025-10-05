@@ -18,9 +18,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property string $title
- * @property string $description
- * @property string $genres
- * @property int $country_id
+ * @property string|null $slug
+ * @property string|null $description
+ * @property string|null $genres
+ * @property int|null $country_id
  * @package App\Models\Base
  * @mixin IdeHelperArtist
  */
@@ -32,6 +33,7 @@ class Artist extends Model
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
     const TITLE = 'title';
+    const SLUG = 'slug';
     const DESCRIPTION = 'description';
     const GENRES = 'genres';
     const COUNTRY_ID = 'country_id';

@@ -18,11 +18,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property string $title
- * @property string $description
- * @property string $genres
+ * @property string|null $slug
+ * @property string|null $description
+ * @property string|null $genres
  * @property int $artist_id
- * @property int $year
- * @property int $song_count
+ * @property int|null $year
+ * @property int|null $song_count
  * @property bool $has_explicit_lyrics
  * @package App\Models\Base
  * @mixin IdeHelperAlbum
@@ -35,6 +36,7 @@ class Album extends Model
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
     const TITLE = 'title';
+    const SLUG = 'slug';
     const DESCRIPTION = 'description';
     const GENRES = 'genres';
     const ARTIST_ID = 'artist_id';
