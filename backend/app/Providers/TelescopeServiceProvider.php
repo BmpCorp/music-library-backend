@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\PermissionCode;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
@@ -14,14 +15,14 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     public function register(): void
     {
-        // Telescope::night();
+        Telescope::night();
 
         $this->hideSensitiveRequestDetails();
 
-        $isLocal = $this->app->environment('local');
+        $isLocalOrDebug = $this->app->environment('local') || config('app.debug');
 
-        Telescope::filter(function (IncomingEntry $entry) use ($isLocal) {
-            return $isLocal ||
+        Telescope::filter(function (IncomingEntry $entry) use ($isLocalOrDebug) {
+            return $isLocalOrDebug ||
                    $entry->isReportableException() ||
                    $entry->isFailedRequest() ||
                    $entry->isFailedJob() ||
@@ -48,6 +49,21 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
         ]);
     }
 
+    protected function authorization(): void
+    {
+        Telescope::auth(function () {
+            $user = backpack_user();
+            $isAllowed = $user?->hasAnyPermission([PermissionCode::FULL_ACCESS, PermissionCode::MAINTENANCE]);
+
+            if (!$isAllowed) {
+                redirect(backpack_url('/login'))->send();
+                return false;
+            }
+
+            return true;
+        });
+    }
+
     /**
      * Register the Telescope gate.
      *
@@ -56,9 +72,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewTelescope', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
+            return $user->hasAnyPermission([PermissionCode::FULL_ACCESS, PermissionCode::MAINTENANCE]);
         });
     }
 }

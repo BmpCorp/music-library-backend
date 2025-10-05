@@ -34,5 +34,11 @@
         <x-backpack::menu-dropdown-item title="phpinfo" icon="la la-info-circle" :link="backpack_url('metrics/php')" />
         <x-backpack::menu-dropdown-item title="php-fpm" icon="la la-server" :link="backpack_url('metrics/php-fpm')" />
         <x-backpack::menu-dropdown-item title="MySQL" icon="la la-database" :link="backpack_url('metrics/mysql')" />
+        @if(config('telescope.enabled'))
+            <x-backpack::menu-dropdown-item title="Telescope" icon="la la-moon" :link="backpack_url('metrics/telescope')" />
+        @else
+            <x-backpack::menu-dropdown-item title="Telescope" icon="la la-moon" class="text-muted" />
+        @endif
+        <x-backpack::menu-dropdown-item title="Horizon" icon="la la-sun" :link="backpack_url('metrics/horizon')" />
     </x-backpack::menu-dropdown>
 @endcanany
