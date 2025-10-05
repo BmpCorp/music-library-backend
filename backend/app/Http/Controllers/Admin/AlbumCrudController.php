@@ -13,15 +13,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class AlbumCrudController
- * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
 class AlbumCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -96,7 +95,7 @@ class AlbumCrudController extends CrudController
             'name' => Album::CREATED_AT,
             'type' => 'date',
             'label' => 'Дата добавления',
-            'format' => 'DD.MM.YYYY HH:mm'
+            'format' => 'DD.MM.YYYY HH:mm',
         ]);
     }
 

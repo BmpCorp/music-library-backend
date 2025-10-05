@@ -36,7 +36,7 @@ class MediaLibraryCollectionAttribute extends Attribute
                         });
                     }
                 } else {
-                    $filesToClear = request()->get('clear_'.$collection, []);
+                    $filesToClear = request()->get('clear_' . $collection, []);
                     $model->getMedia($collection, function (Media $media) use ($filesToClear, $conversion) {
                         return in_array($media->getUrl(), $filesToClear) || in_array($media->getUrl($conversion), $filesToClear);
                     })->each(function (Media $media) {

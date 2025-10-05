@@ -4,21 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\PermissionCode;
 use App\Models\User;
-use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Utilities\AdminField;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 
 /**
  * Class UserCrudController
- * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
 class UserCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -148,7 +147,7 @@ class UserCrudController extends CrudController
                     'attribute' => 'name', // foreign key attribute that is shown to user
                     'model' => config('permission.models.role'), // foreign key model
                     'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-                    'number_columns' => 3, //can be 1,2,3,4,6
+                    'number_columns' => 3, // can be 1,2,3,4,6
                 ],
                 'secondary' => [
                     'label' => mb_ucfirst(trans('backpack::permissionmanager.permission_plural')),
@@ -158,7 +157,7 @@ class UserCrudController extends CrudController
                     'attribute' => 'admin_name', // foreign key attribute that is shown to user
                     'model' => config('permission.models.permission'), // foreign key model
                     'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-                    'number_columns' => 3, //can be 1,2,3,4,6
+                    'number_columns' => 3, // can be 1,2,3,4,6
                 ],
             ],
         ]);

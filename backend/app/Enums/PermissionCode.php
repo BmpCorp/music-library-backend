@@ -10,6 +10,7 @@ final class PermissionCode extends Enum implements LocalizedEnum
     const FULL_ACCESS = 'full_access';
 
     const USERS = 'users';
+
     const ROLES = 'roles';
 
     const DICTIONARIES = 'dictionaries';

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Attributes\MediaLibraryCollectionAttribute;
+use App\Models\Base\Album as BaseAlbum;
 use App\Utilities\SearchableString;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use App\Models\Base\Album as BaseAlbum;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,27 +27,27 @@ class Album extends BaseAlbum implements HasMedia
     /**
      * @var string[]
      */
-	protected $hidden = [
-		self::CREATED_AT,
-		self::UPDATED_AT,
-		self::DELETED_AT,
+    protected $hidden = [
+        self::CREATED_AT,
+        self::UPDATED_AT,
+        self::DELETED_AT,
         'media',
-	];
+    ];
 
     /**
      * @var string[]
      */
-	protected $fillable = [
-		self::TITLE,
+    protected $fillable = [
+        self::TITLE,
         self::SLUG,
-		self::DESCRIPTION,
-		self::GENRES,
-		self::ARTIST_ID,
-		self::YEAR,
-		self::SONG_COUNT,
-		self::HAS_EXPLICIT_LYRICS,
+        self::DESCRIPTION,
+        self::GENRES,
+        self::ARTIST_ID,
+        self::YEAR,
+        self::SONG_COUNT,
+        self::HAS_EXPLICIT_LYRICS,
         self::COVER,
-	];
+    ];
 
     protected $appends = [
         self::COVER,

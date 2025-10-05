@@ -13,15 +13,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class ArtistCrudController
- * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
 class ArtistCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -94,7 +93,7 @@ class ArtistCrudController extends CrudController
             'name' => Artist::CREATED_AT,
             'type' => 'date',
             'label' => 'Дата добавления',
-            'format' => 'DD.MM.YYYY HH:mm'
+            'format' => 'DD.MM.YYYY HH:mm',
         ]);
     }
 

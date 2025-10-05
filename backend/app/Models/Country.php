@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Base\Country as BaseCountry;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -16,19 +16,19 @@ class Country extends BaseCountry
     /**
      * @var string[]
      */
-	protected $hidden = [
-		self::CREATED_AT,
-		self::UPDATED_AT,
-		self::DELETED_AT,
-	];
+    protected $hidden = [
+        self::CREATED_AT,
+        self::UPDATED_AT,
+        self::DELETED_AT,
+    ];
 
     /**
      * @var string[]
      */
-	protected $fillable = [
-		self::CODE,
-		self::NAME,
-	];
+    protected $fillable = [
+        self::CODE,
+        self::NAME,
+    ];
 
     public function artists(): HasMany
     {

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Base\UserFavoriteArtist as BaseUserArtistFavorite;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -12,21 +12,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UserFavoriteArtist extends BaseUserArtistFavorite
 {
     use CrudTrait;
-    /**
-     * @var string[]
-     */
-	protected $hidden = [
-		self::CREATED_AT,
-		self::UPDATED_AT,
-	];
 
     /**
      * @var string[]
      */
-	protected $fillable = [
-		self::LAST_CHECKED_ALBUM_ID,
-		self::LISTENING_NOW,
-	];
+    protected $hidden = [
+        self::CREATED_AT,
+        self::UPDATED_AT,
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        self::LAST_CHECKED_ALBUM_ID,
+        self::LISTENING_NOW,
+    ];
 
     public function user(): BelongsTo
     {

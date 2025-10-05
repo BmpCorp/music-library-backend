@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Attributes\MediaLibraryCollectionAttribute;
+use App\Models\Base\Artist as BaseArtist;
 use App\Utilities\SearchableString;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use App\Models\Base\Artist as BaseArtist;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;

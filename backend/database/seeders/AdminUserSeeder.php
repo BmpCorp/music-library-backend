@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Enums\RoleNames;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+
 use function Laravel\Prompts\info;
 
 class AdminUserSeeder extends Seeder

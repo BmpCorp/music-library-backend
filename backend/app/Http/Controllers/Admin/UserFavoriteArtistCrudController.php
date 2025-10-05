@@ -13,7 +13,6 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class UserFavoriteArtistCrudController
- * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
 class UserFavoriteArtistCrudController extends CrudController

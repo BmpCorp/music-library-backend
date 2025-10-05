@@ -8,17 +8,15 @@ use Illuminate\Support\Facades\Http;
 class OpenRouterService
 {
     private const API_URL = 'https://openrouter.ai/api/v1/';
+
     /** @var int in seconds */
     private const API_TIMEOUT = 300;
 
     /**
      * @see https://openrouter.ai/docs/api-reference/chat-completion
      * @see https://openrouter.ai/docs/api-reference/overview#completions-request-format
-     * @param string $prompt
-     * @param bool $asJson
-     * @return string|null
      */
-    public function request(string $prompt, bool $asJson = false): string|null
+    public function request(string $prompt, bool $asJson = false): ?string
     {
         if (!$prompt) {
             return null;

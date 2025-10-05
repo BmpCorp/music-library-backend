@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Country;
 use App\Services\OpenRouterService;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\warning;
 
@@ -23,7 +23,7 @@ class CountrySeeder extends Seeder
             'The values of these fields should be, respectively: ' .
             'two-letter ISO 3166-1 alpha-2 code of the country; name of the country in Russian.';
 
-        $response = (new OpenRouterService())->request($prompt, true);
+        $response = (new OpenRouterService)->request($prompt, true);
         $countries = json_decode($response, true);
         if (!$countries) {
             logger()->debug($response);

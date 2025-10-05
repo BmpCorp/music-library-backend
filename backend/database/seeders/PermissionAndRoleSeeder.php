@@ -8,6 +8,7 @@ use App\Enums\RoleNames;
 use Backpack\PermissionManager\app\Models\Role;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+
 use function Laravel\Prompts\warning;
 
 class PermissionAndRoleSeeder extends Seeder

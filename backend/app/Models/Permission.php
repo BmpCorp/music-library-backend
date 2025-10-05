@@ -20,7 +20,7 @@ class Permission extends \Backpack\PermissionManager\app\Models\Permission
     {
         $names = PermissionCode::getNames();
         return Attribute::make(
-            get: fn($value, array $attributes) => $names[$this->name] ?? $this->name,
+            get: fn ($value, array $attributes) => $names[$this->name] ?? $this->name,
         );
     }
 }

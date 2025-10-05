@@ -6,8 +6,8 @@ use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Country;
 use App\Services\OpenRouterService;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use function Laravel\Prompts\warning;
 
 class ArtistAndAlbumSeeder extends Seeder
@@ -22,7 +22,7 @@ class ArtistAndAlbumSeeder extends Seeder
             'Here, "title" should be a title of the album; ' .
             '"genres" should be a list of the album\'s music genres (1 to 3) in English, separated by comma and space.';
 
-        $response = (new OpenRouterService())->request($prompt, true);
+        $response = (new OpenRouterService)->request($prompt, true);
         $artists = json_decode($response, true);
         if (!$artists) {
             logger()->debug($response);
