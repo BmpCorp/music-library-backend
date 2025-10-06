@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "backpack/crud": "^6.8",
         "backpack/medialibrary-uploaders": "^1.2",
         "backpack/permissionmanager": "^7.2",
