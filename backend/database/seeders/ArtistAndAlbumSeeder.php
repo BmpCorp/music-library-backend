@@ -23,17 +23,17 @@ class ArtistAndAlbumSeeder extends Seeder
             '"genres" should be a list of the album\'s music genres (1 to 3) in English, separated by comma and space.';
 
         $response = (new OpenRouterService)->request($prompt, true);
-        $artists = json_decode($response, true);
-        if (!$artists) {
+        if (!json_validate($response)) {
             logger()->debug($response);
             warning('Empty or wrong response from AI, no seeding was performed. Please check logs');
             return;
         }
+        
+        $artists = json_decode($response, true);
+        $now = now()->toDateTimeString();
 
         // Here we make a dictionary of all countries to minimize further queries
         $countryMap = Country::pluck(Country::ID, Country::CODE);
-
-        $now = now()->toDateTimeString();
 
         foreach ($artists as $entry) {
             $artist = Artist::create([

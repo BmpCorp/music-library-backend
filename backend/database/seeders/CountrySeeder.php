@@ -24,14 +24,15 @@ class CountrySeeder extends Seeder
             'two-letter ISO 3166-1 alpha-2 code of the country; name of the country in Russian.';
 
         $response = (new OpenRouterService)->request($prompt, true);
-        $countries = json_decode($response, true);
-        if (!$countries) {
+        if (!json_validate($response)) {
             logger()->debug($response);
             warning('Empty or wrong response from AI, no seeding was performed. Please check logs');
             return;
         }
 
+        $countries = json_decode($response, true);
         $now = now()->toDateTimeString();
+
         $data = array_map(fn ($entry) => [
             Country::CREATED_AT => $now,
             Country::UPDATED_AT => $now,
