@@ -38,7 +38,7 @@ class AlbumController extends ApiController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         $album = Album::with('artist')->find($id);
 
