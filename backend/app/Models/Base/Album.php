@@ -6,8 +6,8 @@
 
 namespace App\Models\Base;
 
+use App\Models\SearchableModel;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models\Base
  * @mixin IdeHelperAlbum
  */
-class Album extends Model
+class Album extends SearchableModel
 {
     use SoftDeletes;
     const ID = 'id';

@@ -497,6 +497,12 @@ return [
         'users' => [
             'parent' => Illuminate\Foundation\Auth\User::class,
         ],
+        'artists' => [
+            'parent' => \App\Models\SearchableModel::class,
+        ],
+        'albums' => [
+            'parent' => \App\Models\SearchableModel::class,
+        ],
     ],
 
     // 'shop' => [

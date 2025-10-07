@@ -29,6 +29,7 @@ namespace App\Models{
  * @property mixed $cover
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album onlyTrashed()
@@ -46,6 +47,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album withoutTrashed()
  * @mixin \Eloquent
  */

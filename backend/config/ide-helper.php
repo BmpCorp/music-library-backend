@@ -156,7 +156,7 @@ return [
     */
 
     'ignored_models' => [
-        // App\MyModel::class,
+        \App\Models\SearchableModel::class,
     ],
 
     /*

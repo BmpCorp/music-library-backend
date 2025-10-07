@@ -20,7 +20,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Album extends BaseAlbum implements HasMedia
 {
-    use CrudTrait, InteractsWithMedia, Searchable, Sluggable;
+    use CrudTrait, InteractsWithMedia, Sluggable;
 
     public const COVER = 'cover';
 

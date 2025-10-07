@@ -23,7 +23,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Artist extends BaseArtist implements HasMedia
 {
-    use CrudTrait, InteractsWithMedia, Searchable, Sluggable;
+    use CrudTrait, InteractsWithMedia, Sluggable;
 
     public const LOGO = 'logo';
 
