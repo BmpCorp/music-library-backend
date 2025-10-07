@@ -19,6 +19,6 @@ abstract class SearchableModel extends Model
      */
     public function scopeVoidResults(Builder $builder): void
     {
-        $builder->where('0 = 1');
+        $builder->whereRaw('0 = 1');
     }
 }
