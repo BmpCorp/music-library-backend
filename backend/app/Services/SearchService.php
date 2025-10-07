@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Artist;
+use App\Models\SearchableModel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchService
@@ -12,21 +13,37 @@ class SearchService
     public const int ON_PAGE = 10;
 
     /**
-     * Get paginated artist collection, performing search if necessary.
+     * Get eloquent collection of searchable model, avoiding explicit search if not needed
+     * @param string $modelClass SearchableModel subclass string
+     * @return Builder<SearchableModel>
+     * @throws \InvalidArgumentException
      */
-    public function searchArtists(?string $query = null, int $page = 1): LengthAwarePaginator
+    public function search(string $modelClass, string $query = ''): Builder
     {
-        if (empty($query)) {
-            return Artist::paginate(perPage: self::ON_PAGE, page: $page);
+        if (!class_exists($modelClass) || !is_subclass_of($modelClass, SearchableModel::class)) {
+            throw new \InvalidArgumentException("Class {$modelClass} does not exist or is not a searchable model.");
         }
 
-        $foundIds = Artist::search($query)->take(self::MAX_SEARCH_RESULTS)->keys();
+        // Just return default sort if no query is provided
+        if ($query === '') {
+            return $modelClass::query();
+        }
+
+        // Otherwise, perform search using Scout and get ids from indexed data.
+        // Passing an empty list into whereIn clause will cause an SQL error, so we should check for this case.
+        $foundIds = $modelClass::search($query)->take(self::MAX_SEARCH_RESULTS)->keys();
+
         if ($foundIds->isEmpty()) {
-            return new LengthAwarePaginator(null, 0, self::ON_PAGE, $page);
+            return $modelClass::voidResults();
         }
 
-        return Artist::whereIn(Artist::ID, $foundIds)
-            ->orderByRaw('FIELD(id, ' . $foundIds->join(',') . ')')
-            ->paginate(perPage: self::ON_PAGE, page: $page);
+        return $modelClass::query()
+            ->whereIn('id', $foundIds)
+            ->orderByRaw('FIELD(id, ' . $foundIds->join(',') . ')');
+    }
+
+    public function paginate(Builder $query, ?int $page = 1): LengthAwarePaginator
+    {
+        return $query->paginate(perPage: self::ON_PAGE, page: $page);
     }
 }

@@ -14,12 +14,14 @@ class ArtistController extends ApiController
      */
     public function index(): JsonResponse
     {
-        $query = $this->request->get('query');
+        $query = $this->request->get('query', '');
         $page = $this->request->get('page', 1);
 
-        $paginatedResult = (new SearchService)->searchArtists($query, $page);
+        $service = new SearchService();
+        $builder = $service->search(Artist::class, $query);
+        $result = $service->paginate($builder, $page);
 
-        return $this->response->pagination($paginatedResult);
+        return $this->response->pagination($result);
     }
 
     /**
@@ -27,7 +29,10 @@ class ArtistController extends ApiController
      */
     public function show(string $id)
     {
-        $artist = Artist::with('albums')->find($id);
+        $artist = Artist::query()
+            ->with(['albums', 'country'])
+            ->withCount('favoriteOfUsers')
+            ->find($id);
 
         if (!$artist) {
             return $this->response->notFound();
