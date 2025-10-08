@@ -18,7 +18,7 @@ class ScoutRun extends Command
      *
      * @var string
      */
-    protected $description = 'Индексация каталога';
+    protected $description = 'Refresh search index';
 
     /**
      * Execute the console command.
