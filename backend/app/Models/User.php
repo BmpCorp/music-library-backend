@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -58,9 +59,17 @@ class User extends BaseUser
         ];
     }
 
-    public function favoriteArtists(): HasManyThrough
+    public function favoriteArtists(): BelongsToMany
     {
-        return $this->hasManyThrough(Artist::class, UserFavoriteArtist::class);
+        return $this->belongsToMany(
+            Artist::class,
+            UserFavoriteArtist::class,
+            UserFavoriteArtist::USER_ID,
+            UserFavoriteArtist::ARTIST_ID,
+        )->withPivot([
+            UserFavoriteArtist::LAST_CHECKED_ALBUM_ID,
+            UserFavoriteArtist::LISTENING_NOW,
+        ]);
     }
 
     public function plainPassword(): Attribute

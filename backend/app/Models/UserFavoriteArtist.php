@@ -25,6 +25,8 @@ class UserFavoriteArtist extends BaseUserArtistFavorite
      * @var string[]
      */
     protected $fillable = [
+        self::USER_ID,
+        self::ARTIST_ID,
         self::LAST_CHECKED_ALBUM_ID,
         self::LISTENING_NOW,
     ];
