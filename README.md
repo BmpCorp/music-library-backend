@@ -18,6 +18,7 @@ its primary focus is to showcase code quality, design patterns, and development 
 - Spatie Laravel Media Library with Backpack support
 - Backpack Permission Manager
 - AI services (Open Router)
+- Swagger for API documentation
 
 ### Additional Notes
 
