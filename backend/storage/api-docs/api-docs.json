@@ -1,0 +1,1079 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Music Library API",
+        "contact": {
+            "email": "bmpcorp9@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/album": {
+            "get": {
+                "tags": [
+                    "Albums",
+                    "List"
+                ],
+                "summary": "Get a paginated list of albums",
+                "operationId": "9a80fc02ab790c1c8251b09a5c822993",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search query for album/artist names or music genres",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number for pagination",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "no_explicit",
+                        "in": "query",
+                        "description": "Filter out albums with explicit content (1 for true, 0 for false)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "enum": [
+                                0,
+                                1
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of albums retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Album Title"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "First album after reunition"
+                                                            },
+                                                            "genres": {
+                                                                "type": "string",
+                                                                "example": "Pop, Rock"
+                                                            },
+                                                            "year": {
+                                                                "type": "integer",
+                                                                "example": 2023
+                                                            },
+                                                            "song_count": {
+                                                                "type": "integer",
+                                                                "example": 9
+                                                            },
+                                                            "has_explicit_lyrics": {
+                                                                "type": "boolean",
+                                                                "example": true
+                                                            },
+                                                            "cover": {
+                                                                "type": "string",
+                                                                "example": "https://example.com/album_cover.png"
+                                                            },
+                                                            "artist": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "title": {
+                                                                        "type": "string",
+                                                                        "example": "Artist Title"
+                                                                    },
+                                                                    "logo": {
+                                                                        "type": "string",
+                                                                        "example": "https://example.com/logo.png"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "pagination": {
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer",
+                                                            "example": 100
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "pages": {
+                                                            "type": "integer",
+                                                            "example": 10
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/album/{id}": {
+            "get": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Get a single album by ID",
+                "operationId": "e4d9a45c41321bb75b12788cf324492d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the album to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Album data retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "item": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Album Title"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "First album after reunition"
+                                                        },
+                                                        "genres": {
+                                                            "type": "string",
+                                                            "example": "Pop, Rock"
+                                                        },
+                                                        "year": {
+                                                            "type": "integer",
+                                                            "example": 2023
+                                                        },
+                                                        "song_count": {
+                                                            "type": "integer",
+                                                            "example": 9
+                                                        },
+                                                        "has_explicit_lyrics": {
+                                                            "type": "boolean",
+                                                            "example": true
+                                                        },
+                                                        "cover": {
+                                                            "type": "string",
+                                                            "example": "https://example.com/album_cover.png"
+                                                        },
+                                                        "artist": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "title": {
+                                                                    "type": "string",
+                                                                    "example": "Artist Title"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string",
+                                                                    "example": "This Band Rocks!"
+                                                                },
+                                                                "genres": {
+                                                                    "type": "string",
+                                                                    "example": "Pop, Rock"
+                                                                },
+                                                                "country_id": {
+                                                                    "type": "integer",
+                                                                    "example": 15
+                                                                },
+                                                                "logo": {
+                                                                    "type": "string",
+                                                                    "example": "https://example.com/logo.png"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/artist": {
+            "get": {
+                "tags": [
+                    "Artists",
+                    "List"
+                ],
+                "summary": "Get a paginated list of artists",
+                "operationId": "2e5823558d57359cd1f4661d64590ef8",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search query for artist names or music genres",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number for pagination",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "no_explicit",
+                        "in": "query",
+                        "description": "Filter out artists with explicit content (1 for true, 0 for false)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "enum": [
+                                0,
+                                1
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of artists retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Artist Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "This Band Rocks!"
+                                                            },
+                                                            "genres": {
+                                                                "type": "string",
+                                                                "example": "Pop, Rock"
+                                                            },
+                                                            "country_id": {
+                                                                "type": "integer",
+                                                                "example": 15
+                                                            },
+                                                            "logo": {
+                                                                "type": "string",
+                                                                "example": "https://example.com/logo.png"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "pagination": {
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer",
+                                                            "example": 100
+                                                        },
+                                                        "page": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "pages": {
+                                                            "type": "integer",
+                                                            "example": 10
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/artist/{id}": {
+            "get": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Get a single artist by ID",
+                "operationId": "2354ab7223cc9f78ad6d094ccfdc5662",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the artist to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Artist data retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "item": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Artist Name"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "This Band Rocks!"
+                                                        },
+                                                        "genres": {
+                                                            "type": "string",
+                                                            "example": "Pop, Rock"
+                                                        },
+                                                        "logo": {
+                                                            "type": "string",
+                                                            "example": "https://example.com/logo.png"
+                                                        },
+                                                        "favorite_of_users_count": {
+                                                            "type": "integer",
+                                                            "example": 12
+                                                        },
+                                                        "albums": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 101
+                                                                    },
+                                                                    "title": {
+                                                                        "type": "string",
+                                                                        "example": "Album Title"
+                                                                    },
+                                                                    "description": {
+                                                                        "type": "string",
+                                                                        "example": "First album after reunition"
+                                                                    },
+                                                                    "genres": {
+                                                                        "type": "string",
+                                                                        "example": "Pop, Rock"
+                                                                    },
+                                                                    "year": {
+                                                                        "type": "integer",
+                                                                        "example": 2023
+                                                                    },
+                                                                    "song_count": {
+                                                                        "type": "integer",
+                                                                        "example": 9
+                                                                    },
+                                                                    "has_explicit_lyrics": {
+                                                                        "type": "boolean",
+                                                                        "example": true
+                                                                    },
+                                                                    "cover": {
+                                                                        "type": "string",
+                                                                        "example": "https://example.com/album_cover.png"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "country": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "code": {
+                                                                    "type": "string",
+                                                                    "example": "RU"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string",
+                                                                    "example": "Russia"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/artist/{id}/favorite": {
+            "post": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Toggle an artist as favorite for the authenticated user",
+                "operationId": "9183a3a0faa4ccee52766cb299460fd3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the artist to toggle as favorite",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Artist favorite status toggled successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Artist added to favorites"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Artist not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/artist/{id}/listening-now": {
+            "post": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Toggle listening now status for a favorite artist",
+                "operationId": "5b35d4c7465564c1d31489da9c23ee5e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the artist to toggle listening now status",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listening now status toggled successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "You're now listening to this artist."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Artist not found in favorites",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "You don't have this artist in your favorites."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/artist/{artistId}/check-album/{albumId}": {
+            "post": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Set the last checked album for a favorite artist",
+                "operationId": "01c9a4375cf352dfd83e54a4397354aa",
+                "parameters": [
+                    {
+                        "name": "artistId",
+                        "in": "path",
+                        "description": "ID of the artist",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "albumId",
+                        "in": "path",
+                        "description": "ID of the album to set as last checked",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last checked album updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Last checked album updated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Artist not found in favorites or album not found for this artist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "You don't have this artist in your favorites."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get authenticated user data",
+                "operationId": "069866150be4b975d248c35627c94fdb",
+                "responses": {
+                    "200": {
+                        "description": "User data retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "item": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "John Doe"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "john.doe@example.com"
+                                                        },
+                                                        "favorite_artists": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 101
+                                                                    },
+                                                                    "title": {
+                                                                        "type": "string",
+                                                                        "example": "Artist Name"
+                                                                    },
+                                                                    "genres": {
+                                                                        "type": "string",
+                                                                        "example": "Pop, Rock"
+                                                                    },
+                                                                    "logo": {
+                                                                        "type": "string",
+                                                                        "example": "https://example.com/logo.png"
+                                                                    },
+                                                                    "pivot": {
+                                                                        "properties": {
+                                                                            "last_checked_album_id": {
+                                                                                "type": "integer",
+                                                                                "example": 1001
+                                                                            },
+                                                                            "listening_now": {
+                                                                                "type": "integer",
+                                                                                "enum": [
+                                                                                    0,
+                                                                                    1
+                                                                                ],
+                                                                                "example": 0
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/login": {
+            "post": {
+                "tags": [
+                    "Users",
+                    "Authorization"
+                ],
+                "summary": "User login attempt",
+                "operationId": "bffef4260a4d121b21a87bc257e22763",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "1|abcdefghijklmnopqrstuvwxyz0123456789abcdef"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Invalid credentials."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "validation.required"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "validation.required"
+                                                    }
+                                                },
+                                                "password": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "validation.required"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/logout": {
+            "post": {
+                "tags": [
+                    "Users",
+                    "Authorization"
+                ],
+                "summary": "User logout",
+                "operationId": "61000f2161b0b0780530891d58c3470a",
+                "responses": {
+                    "200": {
+                        "description": "Logout successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Albums",
+            "description": "Operations related to albums"
+        },
+        {
+            "name": "Artists",
+            "description": "Operations related to artists"
+        },
+        {
+            "name": "Users",
+            "description": "Operations related to users"
+        },
+        {
+            "name": "List",
+            "description": "List"
+        },
+        {
+            "name": "Authorization",
+            "description": "Authorization"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
