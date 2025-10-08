@@ -647,8 +647,8 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Artist not found in favorites",
+                    "403": {
+                        "description": "Artist not present in favorites",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -741,8 +741,8 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Artist not found in favorites or album not found for this artist",
+                    "403": {
+                        "description": "Artist not present in favorites",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -754,6 +754,26 @@
                                         "description": {
                                             "type": "string",
                                             "example": "You don't have this artist in your favorites."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Album not found for this artist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Album not found for this artist."
                                         }
                                     },
                                     "type": "object"

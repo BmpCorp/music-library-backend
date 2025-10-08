@@ -243,8 +243,8 @@ class ArtistController extends ApiController
      *         )
      *     ),
      *     @OA\Response(
-     *         response=404,
-     *         description="Artist not found in favorites",
+     *         response=403,
+     *         description="Artist not present in favorites",
      *         @OA\JsonContent(
      *             @OA\Property(property="status", type="string", example="error"),
      *             @OA\Property(property="description", type="string", example="You don't have this artist in your favorites.")
@@ -260,7 +260,7 @@ class ArtistController extends ApiController
             ->first();
 
         if (!$entry) {
-            return $this->response->notFound('You don\'t have this artist in your favorites.');
+            return $this->response->forbidden('You don\'t have this artist in your favorites.');
         }
 
         $entry->update([
@@ -309,12 +309,20 @@ class ArtistController extends ApiController
      *         )
      *     ),
      *     @OA\Response(
-     *         response=404,
-     *         description="Artist not found in favorites or album not found for this artist",
+     *         response=403,
+     *         description="Artist not present in favorites",
      *         @OA\JsonContent(
      *             @OA\Property(property="status", type="string", example="error"),
      *             @OA\Property(property="description", type="string", example="You don't have this artist in your favorites.")
      *         )
+     *     ),
+     *     @OA\Response(
+     *          response=404,
+     *          description="Album not found for this artist",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="status", type="string", example="error"),
+     *              @OA\Property(property="description", type="string", example="Album not found for this artist.")
+     *          )
      *     )
      * )
      */
@@ -326,7 +334,7 @@ class ArtistController extends ApiController
             ->first();
 
         if (!$entry) {
-            return $this->response->notFound('You don\'t have this artist in your favorites.');
+            return $this->response->forbidden('You don\'t have this artist in your favorites.');
         }
 
         if (Album::whereId($albumId)->where(Album::ARTIST_ID, $artistId)->doesntExist()) {
