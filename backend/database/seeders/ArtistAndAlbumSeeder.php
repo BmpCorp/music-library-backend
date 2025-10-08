@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Services\OpenRouterService;
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Facades\Artisan;
 use function Laravel\Prompts\warning;
 
 class ArtistAndAlbumSeeder extends Seeder
@@ -22,14 +23,18 @@ class ArtistAndAlbumSeeder extends Seeder
             'Here, "title" should be a title of the album; ' .
             '"genres" should be a list of the album\'s music genres (1 to 3) in English, separated by comma and space.';
 
-        $response = (new OpenRouterService)->request($prompt, true);
+        $response = (new OpenRouterService())->request($prompt, true);
         if (!json_validate($response)) {
             logger()->debug($response);
             warning('Empty or wrong response from AI, no seeding was performed. Please check logs');
             return;
         }
-        
+
         $artists = json_decode($response, true);
+        if (isset($artists['artists'])) {
+            $artists = $artists['artists'];
+        }
+
         $now = now()->toDateTimeString();
 
         // Here we make a dictionary of all countries to minimize further queries
@@ -61,5 +66,8 @@ class ArtistAndAlbumSeeder extends Seeder
 
             $artist->update([Artist::GENRES => $artistGenres]);
         }
+
+        // Index data after insert
+        Artisan::call('scout:run');
     }
 }

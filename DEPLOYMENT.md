@@ -17,3 +17,4 @@
 - start docker containers
     - docker compose example: `cd .docker && docker compose -f docker-compose.dev.yml up -d`
 - run `fresh.sh` on first install
+- run `php artisan db:mock` to seed database with mock data on local or staging environment

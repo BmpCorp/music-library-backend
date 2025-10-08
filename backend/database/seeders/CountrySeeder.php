@@ -18,12 +18,12 @@ class CountrySeeder extends Seeder
             return;
         }
 
-        $prompt = 'Please generate a list of countries in minified JSON format. ' .
+        $prompt = 'Please generate a list of countries in minified JSON format (UN member states only). ' .
             'The list should be presented as an array of objects with the following fields: isoCode, name. ' .
             'The values of these fields should be, respectively: ' .
             'two-letter ISO 3166-1 alpha-2 code of the country; name of the country in Russian.';
 
-        $response = (new OpenRouterService)->request($prompt, true);
+        $response = (new OpenRouterService())->request($prompt, true);
         if (!json_validate($response)) {
             logger()->debug($response);
             warning('Empty or wrong response from AI, no seeding was performed. Please check logs');
@@ -31,8 +31,11 @@ class CountrySeeder extends Seeder
         }
 
         $countries = json_decode($response, true);
-        $now = now()->toDateTimeString();
+        if (isset($countries['countries'])) {
+            $countries = $countries['countries'];
+        }
 
+        $now = now()->toDateTimeString();
         $data = array_map(fn ($entry) => [
             Country::CREATED_AT => $now,
             Country::UPDATED_AT => $now,

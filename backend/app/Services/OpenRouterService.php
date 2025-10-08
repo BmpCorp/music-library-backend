@@ -33,6 +33,9 @@ class OpenRouterService
         $params = [
             'model' => $modelName,
             'prompt' => $prompt,
+            'reasoning' => [
+                'exclude' => true,
+            ],
         ];
         if ($asJson) {
             $params['response_format'] = [

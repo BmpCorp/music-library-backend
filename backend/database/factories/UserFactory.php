@@ -18,10 +18,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => null,
-            'password' => 'password',
+            User::NAME => fake()->name(),
+            User::EMAIL => fake()->unique()->safeEmail(),
+            User::EMAIL_VERIFIED_AT => null,
+            User::PASSWORD => 'password',
         ];
     }
 }
