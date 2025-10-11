@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\PermissionCode;
 use App\Models\Album;
 use App\Models\Artist;
+use App\Services\LibraryService;
 use App\Utilities\AdminField;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -213,4 +213,13 @@ class AlbumCrudController extends CrudController
             Album::SONG_COUNT . '.min' => 'Количество песен не может быть отрицательным.',
         ]);
     }
+
+    public function destroy($id)
+    {
+        $this->crud->hasAccessOrFail('delete');
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+
+        return (new LibraryService())->deleteAlbum($id);
+    }
+
 }

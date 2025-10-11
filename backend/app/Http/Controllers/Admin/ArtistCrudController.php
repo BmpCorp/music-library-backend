@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\PermissionCode;
+use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Country;
+use App\Services\LibraryService;
 use App\Utilities\AdminField;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -85,6 +86,18 @@ class ArtistCrudController extends CrudController
             'wrapper' => backpack_pro() ? [
                 'href' => function ($crud, $column, $entry) {
                     return backpack_url('album?artist_id=' . $entry->getKey());
+                },
+            ] : [],
+        ]);
+
+        $this->crud->query->withCount('favoriteOfUsers');
+        $this->crud->column([
+            'label' => 'Слушают',
+            'type' => 'number',
+            'name' => 'favorite_of_users_count',
+            'wrapper' => backpack_pro() && backpack_user()->canAny([PermissionCode::FULL_ACCESS, PermissionCode::FEEDBACK]) ? [
+                'href' => function ($crud, $column, $entry) {
+                    return backpack_url('user-favorite-artist?artist_id=' . $entry->getKey());
                 },
             ] : [],
         ]);
@@ -173,5 +186,18 @@ class ArtistCrudController extends CrudController
             Artist::TITLE . '.max' => 'Слишком длинное название (не более :max символов).',
             Artist::COUNTRY_ID . '.exists' => 'Выбранная страна не существует.',
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $this->crud->hasAccessOrFail('delete');
+        $id = $this->crud->getCurrentEntryId() ?? $id;
+
+        if (Album::whereArtistId($id)->exists()) {
+            \Alert::error('У данного исполнителя есть альбомы. Сначала удалите их.')->flash();
+            return false;
+        }
+
+        return (new LibraryService())->deleteArtist($id);
     }
 }
