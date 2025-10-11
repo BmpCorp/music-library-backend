@@ -32,7 +32,8 @@
         "laravel/telescope": "^5.12",
         "laravel/tinker": "^2.10.1",
         "meilisearch/meilisearch-php": "^1.16",
-        "spatie/laravel-medialibrary": "^11.15"
+        "spatie/laravel-medialibrary": "^11.15",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.3"
     },
     "require-dev": {
         "backpack/generators": "^4.0",
