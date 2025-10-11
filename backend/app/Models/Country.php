@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Base\Country as BaseCountry;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Database\Factories\CountryFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -11,7 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Country extends BaseCountry
 {
-    use CrudTrait;
+    /**
+     * @use HasFactory<CountryFactory>
+     */
+    use CrudTrait, HasFactory;
 
     /**
      * @var string[]

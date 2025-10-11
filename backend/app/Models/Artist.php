@@ -7,8 +7,10 @@ use App\Models\Base\Artist as BaseArtist;
 use App\Utilities\SearchableString;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Database\Factories\ArtistFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,7 +25,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Artist extends BaseArtist implements HasMedia
 {
-    use CrudTrait, InteractsWithMedia, Sluggable;
+    /**
+     * @use HasFactory<ArtistFactory>
+     */
+    use CrudTrait, HasFactory, InteractsWithMedia, Sluggable;
 
     public const LOGO = 'logo';
 

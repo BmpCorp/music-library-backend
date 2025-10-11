@@ -13,7 +13,23 @@ use function Laravel\Prompts\warning;
 
 class ArtistAndAlbumSeeder extends Seeder
 {
-    public function run(): void
+    public function run(bool $withAi = false): void
+    {
+        if ($withAi) {
+            $this->seedWithAi();
+        } else {
+            $this->seed();
+        }
+    }
+
+    private function seed(): void
+    {
+        Artist::factory(20)->withCountry()->create()->each(function (Artist $artist) {
+            Album::factory(3)->for($artist)->create();
+        });
+    }
+
+    private function seedWithAi(): void
     {
         $prompt = 'Please generate a list of music artists in minified JSON format (20 of them is enough). ' .
             'The list should be presented as an array of objects with the the following fields: countryCode, name, albums. ' .

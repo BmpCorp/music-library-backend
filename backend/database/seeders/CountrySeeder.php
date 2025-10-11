@@ -11,13 +11,27 @@ use function Laravel\Prompts\warning;
 
 class CountrySeeder extends Seeder
 {
-    public function run(): void
+    public function run(bool $withAi = false): void
     {
         if (Country::exists()) {
             info('Countries already exist');
             return;
         }
 
+        if ($withAi) {
+            $this->seedWithAi();
+        } else {
+            $this->seed();
+        }
+    }
+
+    private function seed(): void
+    {
+        Country::factory(30)->create();
+    }
+
+    private function seedWithAi(): void
+    {
         $prompt = 'Please generate a list of countries in minified JSON format (UN member states only). ' .
             'The list should be presented as an array of objects with the following fields: isoCode, name. ' .
             'The values of these fields should be, respectively: ' .

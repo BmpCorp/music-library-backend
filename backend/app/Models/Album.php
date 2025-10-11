@@ -7,7 +7,9 @@ use App\Models\Base\Album as BaseAlbum;
 use App\Utilities\SearchableString;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Database\Factories\AlbumFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
 use Spatie\Image\Enums\Fit;
@@ -20,7 +22,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Album extends BaseAlbum implements HasMedia
 {
-    use CrudTrait, InteractsWithMedia, Sluggable;
+    /**
+     * @use HasFactory<AlbumFactory>
+     */
+    use CrudTrait, HasFactory, InteractsWithMedia, Sluggable;
 
     public const COVER = 'cover';
 

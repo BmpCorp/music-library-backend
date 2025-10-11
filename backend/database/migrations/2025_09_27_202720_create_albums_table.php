@@ -18,7 +18,13 @@ return new class extends Migration
             $table->string('title', 512);
             $table->text('description')->nullable();
             $table->text('genres')->nullable();
-            $table->unsignedBigInteger('artist_id');
+
+            $table->foreignId('artist_id')
+                ->references('id')
+                ->on('artists')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->unsignedSmallInteger('year')->nullable();
             $table->unsignedBigInteger('song_count')->nullable();
             $table->boolean('has_explicit_lyrics')->default(false);

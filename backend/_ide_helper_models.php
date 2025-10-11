@@ -25,10 +25,11 @@ namespace App\Models{
  * @property int|null $year
  * @property int|null $song_count
  * @property bool $has_explicit_lyrics
- * @property-read \App\Models\Artist|null $artist
+ * @property-read \App\Models\Artist $artist
  * @property mixed $cover
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
+ * @method static \Database\Factories\AlbumFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newQuery()
@@ -75,6 +76,7 @@ namespace App\Models{
  * @property mixed $logo
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
+ * @method static \Database\Factories\ArtistFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
@@ -280,6 +282,7 @@ namespace App\Models{
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Artist> $artists
  * @property-read int|null $artists_count
+ * @method static \Database\Factories\CountryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country onlyTrashed()
@@ -333,14 +336,14 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Artist> $favoriteArtists
  * @property-read int|null $favorite_artists_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -381,15 +384,15 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
- * @property int $user_id
- * @property int $artist_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $user_id
+ * @property int $artist_id
  * @property int|null $last_checked_album_id
  * @property bool $listening_now
- * @property-read \App\Models\Artist|null $artist
+ * @property-read \App\Models\Artist $artist
  * @property-read \App\Models\Album|null $lastCheckedAlbum
- * @property-read \App\Models\User|null $user
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserFavoriteArtist query()

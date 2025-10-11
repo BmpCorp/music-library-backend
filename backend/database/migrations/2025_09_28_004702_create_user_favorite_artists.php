@@ -13,10 +13,27 @@ return new class extends Migration
     {
         Schema::create('user_favorite_artists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('artist_id');
             $table->timestamps();
-            $table->unsignedBigInteger('last_checked_album')->nullable();
+
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreignId('artist_id')
+                ->references('id')
+                ->on('artists')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreignId('last_checked_album')
+                ->nullable()
+                ->references('id')
+                ->on('albums')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+
             $table->boolean('listening_now')->default(false);
 
             $table->index(['user_id', 'artist_id']);

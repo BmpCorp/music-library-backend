@@ -12,7 +12,7 @@ class DbMock extends Command
      *
      * @var string
      */
-    protected $signature = 'db:mock';
+    protected $signature = 'db:mock {--ai}';
 
     /**
      * The console command description.
@@ -28,6 +28,7 @@ class DbMock extends Command
     {
         set_time_limit(0);
 
-        (new DatabaseSeeder())->mock();
+        $withAi = $this->hasOption('ai');
+        (new DatabaseSeeder())->mock($withAi);
     }
 }

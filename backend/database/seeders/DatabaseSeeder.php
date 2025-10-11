@@ -18,11 +18,15 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 
-    public function mock(): void
+    public function mock($withAi = false): void
     {
         $this->call([
             CountrySeeder::class,
             ArtistAndAlbumSeeder::class,
+        ], false, [
+            'withAi' => $withAi,
+        ]);
+        $this->call([
             UserSeeder::class,
         ]);
     }

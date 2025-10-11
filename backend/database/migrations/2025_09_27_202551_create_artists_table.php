@@ -18,7 +18,13 @@ return new class extends Migration
             $table->string('title', 512);
             $table->text('description')->nullable();
             $table->text('genres')->nullable();
-            $table->unsignedBigInteger('country_id')->nullable();
+
+            $table->foreignId('country_id')
+                ->nullable()
+                ->references('id')
+                ->on('countries')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
 
             $table->index(['title', 'deleted_at']);
             $table->index(['country_id', 'deleted_at']);
