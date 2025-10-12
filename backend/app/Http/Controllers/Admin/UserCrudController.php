@@ -52,26 +52,26 @@ class UserCrudController extends CrudController
         $this->crud->addColumn([
             'name' => User::NAME,
             'type' => 'text',
-            'label' => 'Имя',
+            'label' => trans('columns.user-name'),
         ]);
 
         $this->crud->addColumn([
             'name' => User::EMAIL,
             'type' => 'email',
-            'label' => 'Email',
+            'label' => trans('columns.user-email'),
         ]);
 
         $this->crud->addColumn([
             'name' => User::CREATED_AT,
             'type' => 'date',
-            'label' => 'Дата регистрации',
+            'label' => trans('columns.user-registered-at'),
             'format' => 'DD.MM.YYYY HH:mm',
         ]);
 
         $this->crud->addColumn([
             'name' => 'role_name',
             'type' => 'text',
-            'label' => 'Роль',
+            'label' => trans('columns.user-role'),
             'value' => function (User $entry) {
                 $str = '';
                 $role = $entry->roles()->first();
@@ -119,7 +119,7 @@ class UserCrudController extends CrudController
         $this->crud->addField([
             'name' => User::NAME,
             'type' => 'text',
-            'label' => 'Имя',
+            'label' => trans('fields.user-name'),
             'attributes' => AdminField::INPUT_MAX_LENGTH_255,
             'wrapper' => AdminField::WRAPPER_HALF,
         ]);
@@ -127,7 +127,7 @@ class UserCrudController extends CrudController
         $this->crud->addField([
             'name' => User::EMAIL,
             'type' => 'email',
-            'label' => 'Email',
+            'label' => trans('fields.user-email'),
             'attributes' => AdminField::INPUT_MAX_LENGTH_255,
             'wrapper' => AdminField::WRAPPER_HALF,
         ]);
@@ -136,12 +136,12 @@ class UserCrudController extends CrudController
         $this->crud->addField([
             'name' => 'roles,permissions',
             'type' => 'checklist_dependency',
-            'label' => trans('backpack::permissionmanager.user_role_permission'),
+            'label' => trans('fields.user-roles-permissions'),
             'field_unique_name' => 'user_role_permission',
             'subfields' => [
                 'primary' => [
-                    'label' => trans('backpack::permissionmanager.roles'),
                     'name' => 'roles',
+                    'label' => trans('fields.user-roles'),
                     'entity' => 'roles', // the method that defines the relationship in your Model
                     'entity_secondary' => 'permissions', // the method that defines the relationship in your Model
                     'attribute' => 'name', // foreign key attribute that is shown to user
@@ -150,8 +150,8 @@ class UserCrudController extends CrudController
                     'number_columns' => 3, // can be 1,2,3,4,6
                 ],
                 'secondary' => [
-                    'label' => mb_ucfirst(trans('backpack::permissionmanager.permission_plural')),
                     'name' => 'permissions',
+                    'label' => trans('fields.role-permissions'),
                     'entity' => 'permissions', // the method that defines the relationship in your Model
                     'entity_primary' => 'roles', // the method that defines the relationship in your Model
                     'attribute' => 'admin_name', // foreign key attribute that is shown to user
@@ -166,16 +166,16 @@ class UserCrudController extends CrudController
         $this->crud->addField([
             'name' => User::PLAIN_PASSWORD,
             'type' => 'password',
-            'label' => 'Пароль',
+            'label' => trans('fields.user-password'),
             'attributes' => AdminField::INPUT_MAX_LENGTH_255,
             'wrapper' => AdminField::WRAPPER_HALF,
-            'hint' => $inEditingMode ? 'Оставьте поле пустым, чтобы не менять пароль' : null,
+            'hint' => $inEditingMode ? trans('fields.user-password-hint') : null,
         ]);
 
         $this->crud->addField([
             'name' => 'password_confirm',
             'type' => 'password',
-            'label' => 'Повторите пароль',
+            'label' => trans('fields.user-password-confirm'),
             'attributes' => AdminField::INPUT_MAX_LENGTH_255,
             'wrapper' => AdminField::WRAPPER_HALF,
         ]);

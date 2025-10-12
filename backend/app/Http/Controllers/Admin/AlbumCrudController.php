@@ -58,13 +58,13 @@ class AlbumCrudController extends CrudController
         $this->crud->column([
             'name' => Album::TITLE,
             'type' => 'text',
-            'label' => 'Название',
+            'label' => trans('columns.album-title'),
         ]);
 
         $this->crud->column([
             'name' => 'artist.' . Artist::TITLE,
             'type' => 'text',
-            'label' => 'Исполнитель',
+            'label' => trans('columns.album-artist'),
             'searchLogic' => function (Builder $query, $column, $searchTerm) {
                 $query->orWhereRelation('artist', Artist::TITLE, 'LIKE', "%{$searchTerm}%");
             },
@@ -73,20 +73,20 @@ class AlbumCrudController extends CrudController
         $this->crud->column([
             'name' => Album::YEAR,
             'type' => 'number',
-            'label' => 'Год',
+            'label' => trans('columns.album-year'),
             'thousands_sep' => '',
         ]);
 
         $this->crud->column([
             'name' => Album::COVER,
             'type' => 'image',
-            'label' => 'Обложка',
+            'label' => trans('columns.album-cover'),
         ]);
 
         $this->crud->column([
             'name' => Album::HAS_EXPLICIT_LYRICS,
             'type' => 'boolean',
-            'label' => 'Explicit',
+            'label' => trans('columns.album-has-explicit-lyrics'),
             'options' => [
                 0 => 'Нет',
                 1 => 'Да',
@@ -96,7 +96,7 @@ class AlbumCrudController extends CrudController
         $this->crud->column([
             'name' => Album::CREATED_AT,
             'type' => 'date',
-            'label' => 'Дата добавления',
+            'label' => trans('columns.created-at'),
             'format' => 'DD.MM.YYYY HH:mm',
         ]);
     }
@@ -130,13 +130,13 @@ class AlbumCrudController extends CrudController
         $this->crud->addField([
             'name' => Album::TITLE,
             'type' => 'text',
-            'label' => 'Название',
+            'label' => trans('fields.album-title'),
             'attributes' => AdminField::INPUT_MAX_LENGTH_255,
         ]);
 
         $this->crud->addField([
             'name' => Album::ARTIST_ID,
-            'label' => 'Исполнитель',
+            'label' => trans('fields.album-artist'),
             'type' => 'select',
             'entity' => 'artist',
             'model' => Artist::class,
@@ -147,7 +147,7 @@ class AlbumCrudController extends CrudController
         $this->crud->addField([
             'name' => Album::YEAR,
             'type' => 'number',
-            'label' => 'Год',
+            'label' => trans('fields.album-year'),
             'attributes' => [
                 'min' => 1900,
                 'max' => date('Y'),
@@ -158,7 +158,7 @@ class AlbumCrudController extends CrudController
         $this->crud->addField([
             'name' => Album::SONG_COUNT,
             'type' => 'number',
-            'label' => 'Кол-во песен',
+            'label' => trans('fields.album-song-count'),
             'attributes' => [
                 'min' => 0,
             ],
@@ -168,27 +168,27 @@ class AlbumCrudController extends CrudController
         $this->crud->addField([
             'name' => Album::HAS_EXPLICIT_LYRICS,
             'type' => 'checkbox',
-            'label' => 'Explicit',
+            'label' => trans('fields.album-has-explicit-lyrics'),
             'wrapper' => AdminField::WRAPPER_HALF,
         ]);
 
         $this->crud->addField([
             'name' => Album::DESCRIPTION,
             'type' => 'textarea',
-            'label' => 'Описание',
+            'label' => trans('fields.album-description'),
             'attributes' => AdminField::TEXTAREA_ROWS_3,
         ]);
 
         $this->crud->addField([
             'name' => Album::GENRES,
             'type' => 'text',
-            'label' => 'Жанры',
+            'label' => trans('fields.album-genres'),
         ]);
 
         $this->crud->addField([
             'name' => Album::COVER,
             'type' => 'upload',
-            'label' => 'Обложка',
+            'label' => trans('fields.album-cover'),
             'upload' => true,
         ]);
     }

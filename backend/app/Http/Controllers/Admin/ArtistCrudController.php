@@ -57,30 +57,30 @@ class ArtistCrudController extends CrudController
         $this->crud->column([
             'name' => Artist::TITLE,
             'type' => 'text',
-            'label' => 'Название',
+            'label' => trans('columns.artist-title'),
         ]);
 
         $this->crud->column([
             'name' => 'country.' . Country::NAME,
             'type' => 'text',
-            'label' => 'Страна',
+            'label' => trans('columns.artist-country'),
         ]);
 
         $this->crud->column([
             'name' => Artist::LOGO,
             'type' => 'image',
-            'label' => 'Логотип',
+            'label' => trans('columns.artist-logo'),
         ]);
 
         $this->crud->column([
             'name' => Artist::GENRES,
             'type' => 'text',
-            'label' => 'Жанры',
+            'label' => trans('columns.artist-genres'),
         ]);
 
         $this->crud->query->withCount('albums');
         $this->crud->column([
-            'label' => 'Альбомов',
+            'label' => trans('columns.artist-albums-count'),
             'type' => 'number',
             'name' => 'albums_count',
             'wrapper' => backpack_pro() ? [
@@ -91,14 +91,14 @@ class ArtistCrudController extends CrudController
         ]);
 
         $this->crud->column([
-            'label' => 'Песен',
+            'label' => trans('columns.artist-total-song-count'),
             'type' => 'number',
             'name' => Artist::TOTAL_SONG_COUNT,
         ]);
 
         $this->crud->query->withCount('favoriteOfUsers');
         $this->crud->column([
-            'label' => 'Слушают',
+            'label' => trans('columns.artist-favorite-of-users-count'),
             'type' => 'number',
             'name' => 'favorite_of_users_count',
             'wrapper' => backpack_pro() && backpack_user()->canAny([PermissionCode::FULL_ACCESS, PermissionCode::FEEDBACK]) ? [
@@ -111,7 +111,7 @@ class ArtistCrudController extends CrudController
         $this->crud->column([
             'name' => Artist::CREATED_AT,
             'type' => 'date',
-            'label' => 'Дата добавления',
+            'label' => trans('columns.created-at'),
             'format' => 'DD.MM.YYYY HH:mm',
         ]);
     }
@@ -145,14 +145,14 @@ class ArtistCrudController extends CrudController
         $this->crud->addField([
             'name' => Artist::TITLE,
             'type' => 'text',
-            'label' => 'Название',
+            'label' => trans('fields.artist-title'),
             'attributes' => AdminField::INPUT_MAX_LENGTH_255,
         ]);
 
         $this->crud->addField([
             'name' => Artist::COUNTRY_ID,
-            'label' => 'Страна',
             'type' => 'select',
+            'label' => trans('fields.artist-country'),
             'entity' => 'country',
             'model' => Country::class,
             'attribute' => Country::NAME,
@@ -162,20 +162,20 @@ class ArtistCrudController extends CrudController
         $this->crud->addField([
             'name' => Artist::DESCRIPTION,
             'type' => 'textarea',
-            'label' => 'Описание',
+            'label' => trans('fields.artist-description'),
             'attributes' => AdminField::TEXTAREA_ROWS_3,
         ]);
 
         $this->crud->addField([
             'name' => Artist::GENRES,
             'type' => 'text',
-            'label' => 'Жанры',
+            'label' => trans('fields.artist-genres'),
         ]);
 
         $this->crud->addField([
             'name' => Artist::LOGO,
             'type' => 'upload',
-            'label' => 'Логотип',
+            'label' => trans('fields.artist-logo'),
             'upload' => true,
         ]);
     }

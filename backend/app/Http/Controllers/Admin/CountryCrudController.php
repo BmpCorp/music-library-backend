@@ -47,20 +47,20 @@ class CountryCrudController extends CrudController
         $this->crud->addColumn([
             'name' => Country::CODE,
             'type' => 'text',
-            'label' => 'Код',
+            'label' => trans('columns.country-code'),
         ]);
 
         $this->crud->addColumn([
             'name' => Country::NAME,
             'type' => 'text',
-            'label' => 'Название',
+            'label' => trans('columns.country-name'),
         ]);
 
         $this->crud->query->withCount('artists');
         $this->crud->addColumn([
-            'label' => 'Исполнителей',
-            'type' => 'number',
             'name' => 'artists_count',
+            'type' => 'number',
+            'label' => trans('columns.country-artists-count'),
             'wrapper' => backpack_pro() ? [
                 'href' => function ($crud, $column, $entry) {
                     return backpack_url('artist?country_id=' . $entry->getKey());
@@ -98,20 +98,20 @@ class CountryCrudController extends CrudController
         $this->crud->addField([
             'name' => Country::CODE,
             'type' => 'text',
-            'label' => 'Код',
+            'label' => trans('fields.country-code'),
             'attributes' => [
                 'maxlength' => 2,
                 'pattern' => '[A-Z]{2}',
             ],
             'wrapper' => AdminField::WRAPPER_QUARTER,
-            'hint' => 'Уникальный двухбуквенный код страны по ISO-3166-1 alpha-2',
+            'hint' => trans('fields.country-code-hint'),
         ]);
 
         $this->crud->addField([
             'name' => Country::NAME,
             'type' => 'text',
-            'label' => 'Название',
-            'attrubutes' => AdminField::INPUT_MAX_LENGTH_255,
+            'label' => trans('fields.country-name'),
+            'attributes' => AdminField::INPUT_MAX_LENGTH_255,
             'wrapper' => AdminField::WRAPPER_THREE_QUARTERS,
         ]);
     }
@@ -123,11 +123,11 @@ class CountryCrudController extends CrudController
             Country::CODE => 'required|string|size:2|unique:countries,' . Country::CODE . ",{$id},id,deleted_at,NULL",
             Country::NAME => 'required|string|max:255',
         ], [
-            Country::CODE . '.required' => 'Не заполнен код.',
-            Country::CODE . '.size' => 'Код должен состоять из двух букв.',
-            Country::CODE . '.unique' => 'Такой код уже существует.',
-            Country::NAME . '.required' => 'Не заполнено название.',
-            Country::NAME . '.max' => 'Слишком длинный текст в поле названия (не более :max символов).',
+            Country::CODE . '.required' => 'Не заполнен код',
+            Country::CODE . '.size' => 'Код должен быть двухбуквенным',
+            Country::CODE . '.unique' => 'Такой код уже существует',
+            Country::NAME . '.required' => 'Не заполнено название',
+            Country::NAME . '.max' => 'Слишком длинное название (не более :max символов).',
         ]);
     }
 }

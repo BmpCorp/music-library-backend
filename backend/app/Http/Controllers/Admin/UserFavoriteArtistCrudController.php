@@ -57,7 +57,7 @@ class UserFavoriteArtistCrudController extends CrudController
         $this->crud->addColumn([
             'name' => UserFavoriteArtist::CREATED_AT,
             'type' => 'datetime',
-            'label' => 'Дата добавления',
+            'label' => trans('columns.created-at'),
             'format' => 'DD.MM.YYYY HH:mm',
             'visibleInTable' => false,
             'visibleInModal' => false,
@@ -67,7 +67,7 @@ class UserFavoriteArtistCrudController extends CrudController
         $this->crud->addColumn([
             'name' => UserFavoriteArtist::UPDATED_AT,
             'type' => 'datetime',
-            'label' => 'Дата обновления',
+            'label' => trans('columns.updated-at'),
             'format' => 'DD.MM.YYYY HH:mm',
             'visibleInTable' => false,
             'visibleInModal' => false,
@@ -77,25 +77,25 @@ class UserFavoriteArtistCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'user.' . User::NAME,
             'type' => 'text',
-            'label' => 'Пользователь',
+            'label' => trans('columns.user-favorites-user'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'artist.' . Artist::TITLE,
             'type' => 'text',
-            'label' => 'Исполнитель',
+            'label' => trans('columns.user-favorites-artist'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'lastCheckedAlbum.' . Album::TITLE,
             'type' => 'text',
-            'label' => 'Последний альбом',
+            'label' => trans('columns.user-favorites-last-checked-album'),
         ]);
 
         $this->crud->addColumn([
             'name' => UserFavoriteArtist::LISTENING_NOW,
             'type' => 'check',
-            'label' => 'Слушает сейчас',
+            'label' => trans('columns.user-favorites-listening-now'),
         ]);
     }
 }

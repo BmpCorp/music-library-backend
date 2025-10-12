@@ -48,7 +48,7 @@ class RoleCrudController extends CrudController
     {
         $this->crud->addColumn([
             'name' => 'name',
-            'label' => trans('backpack::permissionmanager.name'),
+            'label' => trans('columns.role-name'),
             'type' => 'text',
         ]);
 
@@ -63,7 +63,7 @@ class RoleCrudController extends CrudController
          */
         $this->crud->query->withCount('users');
         $this->crud->addColumn([
-            'label' => 'Пользователей',
+            'label' => trans('columns.role-users-count'),
             'type' => 'number',
             'name' => 'users_count',
             'wrapper' => backpack_pro() ? [
@@ -78,7 +78,7 @@ class RoleCrudController extends CrudController
          */
         $this->crud->addColumn([
             // n-n relationship (with pivot table)
-            'label' => mb_ucfirst(trans('backpack::permissionmanager.permission_plural')),
+            'label' => trans('columns.role-permissions'),
             'type' => 'select_multiple',
             'name' => 'permissions', // the method that defines the relationship in your Model
             'entity' => 'permissions', // the method that defines the relationship in your Model
@@ -110,7 +110,7 @@ class RoleCrudController extends CrudController
     {
         $this->crud->addField([
             'name' => 'name',
-            'label' => trans('backpack::permissionmanager.name'),
+            'label' => trans('fields.role-name'),
             'type' => 'text',
         ]);
 
@@ -124,7 +124,7 @@ class RoleCrudController extends CrudController
         }
 
         $this->crud->addField([
-            'label' => mb_ucfirst(trans('backpack::permissionmanager.permission_plural')),
+            'label' => trans('fields.role-permissions'),
             'type' => 'checklist',
             'name' => 'permissions',
             'entity' => 'permissions',
