@@ -123,11 +123,11 @@ class CountryCrudController extends CrudController
             Country::CODE => 'required|string|size:2|unique:countries,' . Country::CODE . ",{$id},id,deleted_at,NULL",
             Country::NAME => 'required|string|max:255',
         ], [
-            Country::CODE . '.required' => 'Не заполнен код',
-            Country::CODE . '.size' => 'Код должен быть двухбуквенным',
-            Country::CODE . '.unique' => 'Такой код уже существует',
-            Country::NAME . '.required' => 'Не заполнено название',
-            Country::NAME . '.max' => 'Слишком длинное название (не более :max символов).',
+            Country::CODE . '.required' => trans('validation.country_code_required'),
+            Country::CODE . '.size' => trans('validation.country_code_size'),
+            Country::CODE . '.unique' => trans('validation.country_code_unique'),
+            Country::NAME . '.required' => trans('validation.artist_title_required'),
+            Country::NAME . '.max' => trans('validation.artist_title_max'),
         ]);
     }
 }

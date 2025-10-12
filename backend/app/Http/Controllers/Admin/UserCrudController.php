@@ -41,7 +41,7 @@ class UserCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
-    public function setupListOperation()
+    protected function setupListOperation()
     {
         $this->crud->addColumn([
             'name' => User::ID,
@@ -203,16 +203,16 @@ class UserCrudController extends CrudController
         }
 
         $this->crud->setValidation($rules, [
-            User::NAME . '.required' => 'Не заполнено имя.',
-            User::NAME . '.max' => 'Слишком длинный текст в поле имени (не более :max символов).',
-            User::EMAIL . '.required' => 'Не заполнен Email',
-            User::EMAIL . '.email' => 'Введённый Email некорректен.',
-            User::EMAIL . '.max' => 'Слишком длинный текст в поле Email (не более :max символов).',
-            User::EMAIL . '.unique' => 'Такой Email уже существует.',
-            User::PLAIN_PASSWORD . '.required' => 'Не заполнен пароль.',
-            User::PLAIN_PASSWORD . '.min' => 'Слишком короткий пароль (минимум :min символов).',
-            'password_confirm.required' => 'Повторите пароль.',
-            'password_confirm.same' => 'Пароли не совпадают.',
+            User::NAME . '.required' => trans('validation.user_name_required'),
+            User::NAME . '.max' => trans('validation.user_name_max'),
+            User::EMAIL . '.required' => trans('validation.user_email_required'),
+            User::EMAIL . '.email' => trans('validation.user_email_email'),
+            User::EMAIL . '.max' => trans('validation.user_email_max'),
+            User::EMAIL . '.unique' => trans('validation.user_email_unique'),
+            User::PLAIN_PASSWORD . '.required' => trans('validation.user_password_required'),
+            User::PLAIN_PASSWORD . '.min' => trans('validation.user_password_min'),
+            'password_confirm.required' => trans('validation.user_password_confirm_required'),
+            'password_confirm.same' => trans('validation.user_password_confirm_same'),
         ]);
     }
 }

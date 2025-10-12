@@ -204,15 +204,15 @@ class AlbumCrudController extends CrudController
             Album::DESCRIPTION => 'nullable|string',
             Album::GENRES => 'nullable|string',
         ], [
-            Album::TITLE . '.required' => 'Не заполнено название.',
-            Album::TITLE . '.max' => 'Слишком длинное название (не более :max символов).',
-            Album::ARTIST_ID . '.required' => 'Не выбран исполнитель.',
-            Album::ARTIST_ID . '.exists' => 'Выбранный исполнитель не существует.',
-            Album::YEAR . '.integer' => 'Год должен быть целым числом.',
-            Album::YEAR . '.min' => 'Год не может быть ранее :min.',
-            Album::YEAR . '.max' => 'Год не может быть позднее :max.',
-            Album::SONG_COUNT . '.integer' => 'Количество песен должно быть целым числом.',
-            Album::SONG_COUNT . '.min' => 'Количество песен не может быть отрицательным.',
+            Album::TITLE . '.required' => trans('validation.artist_title_required'),
+            Album::TITLE . '.max' => trans('validation.artist_title_max'),
+            Album::ARTIST_ID . '.required' => trans('validation.album_artist_id_required'),
+            Album::ARTIST_ID . '.exists' => trans('validation.album_artist_id_exists'),
+            Album::YEAR . '.integer' => trans('validation.album_year_integer'),
+            Album::YEAR . '.min' => trans('validation.album_year_min'),
+            Album::YEAR . '.max' => trans('validation.album_year_max'),
+            Album::SONG_COUNT . '.integer' => trans('validation.album_song_count_integer'),
+            Album::SONG_COUNT . '.min' => trans('validation.album_song_count_min'),
         ]);
     }
 

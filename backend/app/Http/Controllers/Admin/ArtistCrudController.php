@@ -188,9 +188,9 @@ class ArtistCrudController extends CrudController
             Artist::DESCRIPTION => 'nullable|string',
             Artist::GENRES => 'nullable|string',
         ], [
-            Artist::TITLE . '.required' => 'Не заполнено название.',
-            Artist::TITLE . '.max' => 'Слишком длинное название (не более :max символов).',
-            Artist::COUNTRY_ID . '.exists' => 'Выбранная страна не существует.',
+            Artist::TITLE . '.required' => trans('validation.artist_title_required'),
+            Artist::TITLE . '.max' => trans('validation.artist_title_max'),
+            Artist::COUNTRY_ID . '.exists' => trans('validation.artist_country_exists'),
         ]);
     }
 
@@ -200,7 +200,7 @@ class ArtistCrudController extends CrudController
         $id = $this->crud->getCurrentEntryId() ?? $id;
 
         if (Album::whereArtistId($id)->exists()) {
-            \Alert::error('У данного исполнителя есть альбомы. Сначала удалите их.')->flash();
+            \Alert::error(trans('validation.artist_has_albums_error'))->flash();
             return false;
         }
 
