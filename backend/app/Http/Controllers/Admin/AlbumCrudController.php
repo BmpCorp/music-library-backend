@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\PermissionCode;
+use App\Events\AlbumCreated;
+use App\Events\AlbumUpdated;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Services\LibraryService;
@@ -212,6 +214,45 @@ class AlbumCrudController extends CrudController
             Album::SONG_COUNT . '.integer' => 'Количество песен должно быть целым числом.',
             Album::SONG_COUNT . '.min' => 'Количество песен не может быть отрицательным.',
         ]);
+    }
+
+    public function store()
+    {
+        $this->crud->hasAccessOrFail('create');
+        $request = $this->crud->validateRequest();
+        $this->crud->registerFieldEvents();
+
+        /** @var Album $item */
+        $item = $this->crud->create($this->crud->getStrippedSaveRequest($request));
+        $this->data['entry'] = $this->crud->entry = $item;
+
+        \Alert::success(trans('backpack::crud.insert_success'))->flash();
+
+        $this->crud->setSaveAction();
+        event(new AlbumCreated($item->artist_id, $item->id));
+
+        return $this->crud->performSaveAction($item->getKey());
+    }
+
+    public function update()
+    {
+        $this->crud->hasAccessOrFail('update');
+        $request = $this->crud->validateRequest();
+        $this->crud->registerFieldEvents();
+
+        /** @var Album $item */
+        $item = $this->crud->update(
+            $request->get($this->crud->model->getKeyName()),
+            $this->crud->getStrippedSaveRequest($request),
+        );
+        $this->data['entry'] = $this->crud->entry = $item;
+
+        \Alert::success(trans('backpack::crud.update_success'))->flash();
+
+        $this->crud->setSaveAction();
+        event(new AlbumUpdated($item->artist_id, $item->id));
+
+        return $this->crud->performSaveAction($item->getKey());
     }
 
     public function destroy($id)

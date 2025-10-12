@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\AlbumDeleted;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\UserFavoriteArtist;
@@ -32,6 +33,11 @@ class LibraryService
             UserFavoriteArtist::LAST_CHECKED_ALBUM_ID => null,
         ]);
 
-        return $album->delete();
+        $isDeleted = $album->delete();
+        if ($isDeleted) {
+            event(new AlbumDeleted($album->artist_id, $albumId));
+        }
+
+        return $isDeleted;
     }
 }
