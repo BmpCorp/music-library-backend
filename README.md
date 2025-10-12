@@ -12,7 +12,8 @@ its primary focus is to showcase code quality, design patterns, and development 
 - MySQL 8
 - nginx
 - Meilisearch as search engine
-- Redis as caching and queue driver
+- Redis for cache
+- RabbitMQ as message broker
 - Docker and Docker Compose for deployment
 - **Backpack 6** for admin panels
 - Spatie Laravel Media Library with Backpack support
