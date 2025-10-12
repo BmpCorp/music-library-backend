@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Services\SearchService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @OA\Tag(
@@ -78,12 +79,22 @@ class AlbumController extends ApiController
      */
     public function index(): JsonResponse
     {
+        // Validation
         $input = $this->request->validate([
             'query' => 'sometimes|string|max:255',
             'page' => 'sometimes|integer|min:1',
             'no_explicit' => 'sometimes|in:0,1',
         ]);
 
+        // Cache search
+        $cacheKey = 'Api.AlbumController.index:' . md5(serialize($input));
+        $cache = Cache::get($cacheKey);
+
+        if ($cache) {
+            return $this->response->pagination($cache);
+        }
+
+        // Indexed search
         $service = new SearchService();
         $builder = $service
             ->search(Album::class, $input['query'] ?? '')
@@ -93,6 +104,7 @@ class AlbumController extends ApiController
             ->with('artist:' . implode(',', [Artist::ID, Artist::TITLE]));
 
         $result = $service->paginate($builder, $input['page'] ?? 1);
+        Cache::set($cacheKey, $result, 20);
 
         return $this->response->pagination($result);
     }
