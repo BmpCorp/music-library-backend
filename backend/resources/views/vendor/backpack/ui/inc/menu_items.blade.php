@@ -42,5 +42,6 @@
         <x-backpack::menu-dropdown-item title="Horizon" icon="la la-sun" :link="backpack_url('metrics/horizon')" />
         <x-backpack::menu-dropdown-item title="Документация API" icon="la la-code" :link="url('api/docs')" />
         <x-backpack::menu-dropdown-item title="Поисковый индекс" icon="la la-search" :link="config('scout.meilisearch.external_host')" />
+        <x-backpack::menu-dropdown-item title="RabbitMQ" icon="la la-business-time" :link="config('queue.connections.rabbitmq.management_url')" />
     </x-backpack::menu-dropdown>
 @endcanany

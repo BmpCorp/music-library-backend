@@ -86,6 +86,7 @@ return [
                     'vhost' => env('RABBITMQ_VHOST', '/'),
                 ],
             ],
+            'management_url' => env('RABBITMQ_MANAGEMENT_URL'),
 
             'options' => [
                 'ssl_options' => [
