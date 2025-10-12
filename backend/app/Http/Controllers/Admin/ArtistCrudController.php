@@ -90,6 +90,12 @@ class ArtistCrudController extends CrudController
             ] : [],
         ]);
 
+        $this->crud->column([
+            'label' => 'Песен',
+            'type' => 'number',
+            'name' => Artist::TOTAL_SONG_COUNT,
+        ]);
+
         $this->crud->query->withCount('favoriteOfUsers');
         $this->crud->column([
             'label' => 'Слушают',

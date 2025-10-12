@@ -22,8 +22,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $description
  * @property string|null $genres
  * @property int|null $country_id
+ * @property int $total_song_count
  * @package App\Models\Base
- * @mixin IdeHelperArtist
  */
 class Artist extends SearchableModel
 {
@@ -37,12 +37,14 @@ class Artist extends SearchableModel
     const DESCRIPTION = 'description';
     const GENRES = 'genres';
     const COUNTRY_ID = 'country_id';
+    const TOTAL_SONG_COUNT = 'total_song_count';
     protected $table = 'artists';
 
     protected $casts = [
         self::ID => 'int',
         self::CREATED_AT => 'datetime',
         self::UPDATED_AT => 'datetime',
-        self::COUNTRY_ID => 'int'
+        self::COUNTRY_ID => 'int',
+        self::TOTAL_SONG_COUNT => 'int'
     ];
 }

@@ -52,6 +52,7 @@ class Artist extends BaseArtist implements HasMedia
         self::GENRES,
         self::COUNTRY_ID,
         self::LOGO,
+        self::TOTAL_SONG_COUNT,
     ];
 
     protected $appends = [
