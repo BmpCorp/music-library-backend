@@ -16,7 +16,7 @@ RUN curl -sSLf -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
     && chmod +x /usr/local/bin/install-php-extensions \
     && install-php-extensions ftp gd redis ldap soap bcmath exif iconv mbstring mysqli \
-       pdo_mysql zip xml simplexml xmlreader pcntl sodium sockets Imagick/imagick@master
+       pdo_mysql zip xml simplexml xmlreader pcntl sodium sockets xdebug Imagick/imagick@master
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

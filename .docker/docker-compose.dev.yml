@@ -51,6 +51,7 @@ services:
     restart: 'no'
     environment:
       TZ: '${TZ}'
+      PHP_IDE_CONFIG: 'serverName=${NGINX_DOMAIN}'
     volumes:
       - '../backend:/var/www/backend'
       - './php/php.dev.ini:/usr/local/etc/php/conf.d/php.dev.ini'
