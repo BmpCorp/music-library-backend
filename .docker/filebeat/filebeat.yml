@@ -1,0 +1,16 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/storage/logs/*.log
+
+output.elasticsearch:
+  hosts: ['http://elasticsearch:9200']
+  index: 'laravel-log-%{+yyyy.MM.dd}'
+  indices:
+    - index: 'error-%{+yyyy.MM.dd}'
+      when.contains:
+        message: 'ERROR'
+
+setup.template.name: 'laravel'
+setup.template.pattern: 'laravel-*'
