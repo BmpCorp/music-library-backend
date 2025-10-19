@@ -22,6 +22,7 @@ rather than complex business logic.
 - AI services for optional database seeding (Open Router)
 - Swagger for API documentation
 - Optional Laravel Telescope monitoring (off by default)
+- Optional Elasticsearch/Filebeat/Kibana for Laravel logs processing and analysis (separate docker-compose file)
 
 ### Business Logic and Functional Overview
 
@@ -68,6 +69,7 @@ The admin panel menu, form labels, and error messages are fully localized (suppo
 
 Using LLM to provide mock data is for presentation purposes. In real project, it would be more reliable to use
 pre-generated seed data.
+Same for ELK stack, that is surely overkill for such a project. 
 
 For simplicity, this project has no development or feature branches.
 
