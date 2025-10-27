@@ -22,7 +22,7 @@ jobs:
           sed -i "s/<generate>/$RANDOM_PASSWORD/g" backend/.env
 
       - name: Build and start containers
-        run: docker-compose -f .docker/docker-compose.dev.yml up -d --build
+        run: docker compose -f .docker/docker-compose.dev.yml up -d --build
 
       - name: Check container status
         run: |
@@ -30,13 +30,13 @@ jobs:
           SERVICES_DOWN=$(docker-compose -f .docker/docker-compose.dev.yml ps | grep -E -c "Exit|unhealthy")
           if [ $SERVICES_DOWN -gt 0 ]; then
             echo "Some containers are not running correctly."
-            docker-compose -f .docker/docker-compose.dev.yml ps
+            docker compose -f .docker/docker-compose.dev.yml ps
             echo "--- LOGS ---"
-            docker-compose -f .docker/docker-compose.dev.yml logs
+            docker compose -f .docker/docker-compose.dev.yml logs
             exit 1
           else
             echo "All containers are up and running."
-            docker-compose -f .docker/docker-compose.dev.yml ps
+            docker compose -f .docker/docker-compose.dev.yml ps
           fi
 
       - name: Fresh install and seeding
