@@ -1,0 +1,52 @@
+name: Build and Test Development Environment
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure .env files
+        run: |
+          cp .docker/.env.example .docker/.env
+          cp backend/.env.example backend/.env
+          RANDOM_PASSWORD=$(echo $RANDOM | md5sum | head -c 10)
+          sed -i "s/<generate>/$RANDOM_PASSWORD/g" .docker/.env
+          sed -i "s/<same_as_docker>/$RANDOM_PASSWORD/g" backend/.env
+          sed -i "s/<generate>/$RANDOM_PASSWORD/g" backend/.env
+
+      - name: Build and start containers
+        run: docker-compose -f .docker/docker-compose.dev.yml up -d --build
+
+      - name: Check container status
+        run: |
+          sleep 20 # Give containers time to start and run health checks
+          SERVICES_DOWN=$(docker-compose -f .docker/docker-compose.dev.yml ps | grep -E -c "Exit|unhealthy")
+          if [ $SERVICES_DOWN -gt 0 ]; then
+            echo "Some containers are not running correctly."
+            docker-compose -f .docker/docker-compose.dev.yml ps
+            echo "--- LOGS ---"
+            docker-compose -f .docker/docker-compose.dev.yml logs
+            exit 1
+          else
+            echo "All containers are up and running."
+            docker-compose -f .docker/docker-compose.dev.yml ps
+          fi
+
+      - name: Fresh install and seeding
+        run: |
+          bash fresh.sh
+          CONTAINER_NAME=$(docker ps -qf "name=php-1" | head -1)
+          docker exec $CONTAINER_NAME bash -c "php artisan db:mock"
+
+      - name: Testing
+        run: docker exec $CONTAINER_NAME bash -c "php artisan test"
+
+      - name: Check for admin panel access
+        run: curl -f http://localhost:3080/admin/login || (echo "Admin panel access failed" && exit 1)
