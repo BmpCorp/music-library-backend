@@ -27,9 +27,8 @@ jobs:
       - name: Check container status
         run: |
           sleep 10 # Give containers time to start and run health checks
-          echo "Checking container status"
-          SERVICES_DOWN=$(docker compose -f .docker/docker-compose.dev.yml ps | grep -E -c "Exit|unhealthy")
-          echo "Services down: $SERVICES_DOWN"
+          # Suppress grep exit code 1 if everything is ok and no failed containers are found
+          SERVICES_DOWN=$(docker compose -f .docker/docker-compose.dev.yml ps | grep -E -c "Exit|unhealthy" || true)
           if [ $SERVICES_DOWN -gt 0 ]; then
             echo "Some containers are not running correctly."
             docker compose -f .docker/docker-compose.dev.yml ps
