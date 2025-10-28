@@ -65,12 +65,20 @@ The documentation is available via Swagger.
 
 The admin panel menu, form labels, and error messages are fully localized (supporting both Russian and English).
 
+### CI/CD
+
+A presumptive developer team is expected to use feature- and fix-branches to commit their code. When feature or fix is finished,
+a pull request is created to merge these branches to develop branch, squashing commits and deleting branch afterward.
+Once merged into develop branch, new feature should be deployed via GitHub Actions to some staging environment.
+After testing, develop branch finally merged into master branch and deployed to production environment.
+
+Since there's no actual staging or production servers with this project, no actual deploy is performed, but there's
+a Build and Test **GitHub Actions workflow** present, triggering after develop branch is pushed (PR triggers it too).
+
 ### Additional Notes
 
 Using LLM to provide mock data is for presentation purposes. In real project, it would be more reliable to use
 pre-generated seed data.
 Same for ELK stack, that is surely overkill for such a project. 
-
-For simplicity, this project has no development or feature branches.
 
 See DEPLOYMENT.md for deployment instructions.
