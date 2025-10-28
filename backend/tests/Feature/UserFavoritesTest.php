@@ -6,31 +6,28 @@ use App\Models\Album;
 use App\Models\Artist;
 use App\Models\User;
 use App\Models\UserFavoriteArtist;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserFavoritesTest extends TestCase
 {
     private User $user;
     private Artist $artist;
+    private Artist $anotherArtist;
     private Album $album;
     private Album $anotherAlbum;
+
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->user = User::factory(1)->create()->first();
-        $this->artist = Artist::whereHas('albums')->with('albums')->first();
-        $this->album = $this->artist->albums->first();
-        $this->anotherAlbum = Album::whereNot(Album::ARTIST_ID, $this->artist->id)->first();
-    }
-
-    protected function tearDown(): void
-    {
-        UserFavoriteArtist::whereUserId($this->user->id)->delete();
-        $this->user->forceDelete();
-
-        parent::tearDown();
+        $this->artist = Artist::factory(1)->create()->first();
+        $this->album = Album::factory(1)->for($this->artist)->create()->first();
+        $this->anotherArtist = Artist::factory(1)->create()->first();
+        $this->anotherAlbum = Album::factory(1)->for($this->anotherArtist)->create()->first();
     }
 
     private function setDefaultEntry(): void
