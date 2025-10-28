@@ -28,7 +28,7 @@ class DbMock extends Command
     {
         set_time_limit(0);
 
-        $withAi = $this->hasOption('ai');
+        $withAi = $this->option('ai');
         (new DatabaseSeeder())->mock($withAi);
     }
 }
