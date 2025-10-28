@@ -7,6 +7,7 @@ use App\Models\Artist;
 use App\Models\User;
 use App\Models\UserFavoriteArtist;
 use App\Services\LibraryService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ArtistDeleteTest extends TestCase
@@ -16,6 +17,8 @@ class ArtistDeleteTest extends TestCase
     private Album $album;
 
     private LibraryService $service;
+
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -32,16 +35,6 @@ class ArtistDeleteTest extends TestCase
             UserFavoriteArtist::ARTIST_ID => $this->artist->id,
             UserFavoriteArtist::LAST_CHECKED_ALBUM_ID => $this->album->id,
         ]);
-    }
-
-    protected function tearDown(): void
-    {
-        UserFavoriteArtist::whereUserId($this->user->id)->delete();
-        $this->album->forceDelete();
-        $this->artist->forceDelete();
-        $this->user->forceDelete();
-
-        parent::tearDown();
     }
 
     public function test_album_delete(): void
