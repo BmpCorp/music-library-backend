@@ -44,12 +44,14 @@ Place desired domain at the end of the file, on new line. For example:
 127.0.0.1 backend.music-library.local
 ```
 
-After that, you can change these backend/.env vars:
+After that, you can change these backend/.env vars (with corresponding values from .docker/.env):
 
-| variable         | value                                       | example                              |
-|------------------|---------------------------------------------|--------------------------------------|
-| `APP_URL`        | `scheme:// + domain:port` from .docker/.env | `http://backend.music-library.local` |
-| `SESSION_DOMAIN` | `domain` from .docker/.env                  | `backend.music-library.local`        |
+| variable                    | value                                               | example                                    |
+|-----------------------------|-----------------------------------------------------|--------------------------------------------|
+| `APP_URL`                   | `scheme:// + NGINX_DOMAIN:NGINX_HTTP_PORT`          | `http://backend.music-library.local:3080`  |
+| `SESSION_DOMAIN`            | `NGINX_DOMAIN`                                      | `backend.music-library.local`              |
+| `MEILISEARCH_EXTERNAL_HOST` | `scheme:// + NGINX_DOMAIN:MEILISEARCH_PORT`         | `http://backend.music-library.local:7700`  |
+| `RABBITMQ_MANAGEMENT_URL`   | `scheme:// + NGINX_DOMAIN:RABBITMQ_MANAGEMENT_PORT` | `http://backend.music-library.local:15672` |
 
 ### Step 3: Build and Run Docker Containers
 
