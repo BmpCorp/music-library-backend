@@ -24,6 +24,15 @@ rather than complex business logic.
 - Optional Laravel Telescope monitoring (off by default)
 - Optional Elasticsearch/Filebeat/Kibana for Laravel logs processing and analysis (separate docker-compose file)
 
+### Requirements and Deployment
+
+<a href="https://docs.docker.com/engine/install/">Docker Compose (v2)</a> is required.
+
+For simple local deployment, run `deploy.dev.sh` bash script.
+Just make sure these ports are not in use: 3080, 3443, 3306, 7700, 5672, 15672, 6379.
+
+For manual deployment (where you can set different passwords, domain and ports if necessary), see <a href="DEPLOYMENT.md">DEPLOYMENT.md</a>
+
 ### Business Logic and Functional Overview
 
 The core entities of the project are musical artists and their albums. 
@@ -79,6 +88,4 @@ a Build and Test **GitHub Actions workflow** present, triggering after develop b
 
 Using LLM to provide mock data is for presentation purposes. In real project, it would be more reliable to use
 pre-generated seed data.
-Same for ELK stack, that is surely overkill for such a project. 
-
-See DEPLOYMENT.md for deployment instructions.
+Same for ELK stack, that is surely overkill for such a project.

@@ -32,8 +32,6 @@ Configure it, leaving `APP_KEY` empty. These vars should be the same:
 | `RABBITMQ_USER`        | `RABBITMQ_USER`     |
 | `RABBITMQ_PASSWORD`    | `RABBITMQ_PASSWORD` |
 
-`APP_URL` var should be `scheme:// + domain:port` from .docker/.env
-
 ### Step 2 (Optional, for local environment): Configure hosts File
 
 If your plan to use something other than localhost in your local environment, your need to configure hosts file.
@@ -45,6 +43,13 @@ Place desired domain at the end of the file, on new line. For example:
 ```
 127.0.0.1 backend.music-library.local
 ```
+
+After that, you can change these backend/.env vars:
+
+| variable         | value                                       | example                              |
+|------------------|---------------------------------------------|--------------------------------------|
+| `APP_URL`        | `scheme:// + domain:port` from .docker/.env | `http://backend.music-library.local` |
+| `SESSION_DOMAIN` | `domain` from .docker/.env                  | `backend.music-library.local`        |
 
 ### Step 3: Build and Run Docker Containers
 
